@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="617.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/8" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController" id =“stackPane” AnchorPane.topAnchor =“0.0” AnchorPane.bottomAnchor =“0.0” AnchorPane.leftAnchor =“0.0” AnchorPane.rightAnchor =“0.0”>
+   <children>
+      <TextField fx:id="Display" layoutX="41.0" layoutY="66.0" prefHeight="61.0" prefWidth="366.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="24.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/Mine/GQY.JPG" />
+         </image>
+      </ImageView>
+      <Button fx:id="Button_Three" layoutX="238.0" layoutY="476.0" mnemonicParsing="false" onAction="#inputThree" prefHeight="54.0" prefWidth="78.0" text="3">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Zero" layoutX="134.0" layoutY="541.0" mnemonicParsing="false" onAction="#inputZero" prefHeight="54.0" prefWidth="78.0" text="0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Point" layoutX="238.0" layoutY="541.0" mnemonicParsing="false" onAction="#inputPoint" prefHeight="54.0" prefWidth="78.0" text=".">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Equal" layoutX="341.0" layoutY="541.0" mnemonicParsing="false"  prefHeight="54.0" prefWidth="78.0" text="=">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Two" layoutX="134.0" layoutY="476.0" mnemonicParsing="false" onAction="#inputTwo" prefHeight="54.0" prefWidth="78.0" text="2">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_One" layoutX="33.0" layoutY="476.0" mnemonicParsing="false" onAction="#inputOne" prefHeight="54.0" prefWidth="78.0" text="1">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Neq" layoutX="33.0" layoutY="541.0" mnemonicParsing="false" onAction="#inputNeq" prefHeight="54.0" prefWidth="78.0" text="± ">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Add" layoutX="341.0" layoutY="476.0" mnemonicParsing="false" onAction="#inputAdd" prefHeight="54.0" prefWidth="78.0" text="+">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Four" layoutX="33.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputFour" prefHeight="54.0" prefWidth="78.0" text="4">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Five" layoutX="134.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputFive" prefHeight="54.0" prefWidth="78.0" text="5">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Six" layoutX="238.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputSix" prefHeight="54.0" prefWidth="78.0" text="6">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Minus" layoutX="341.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputMinus" prefHeight="54.0" prefWidth="78.0" text="-">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Seven" layoutX="33.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputSeven" prefHeight="54.0" prefWidth="78.0" text="7">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Eight" layoutX="134.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputEight" prefHeight="54.0" prefWidth="78.0" text="8">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Nine" layoutX="238.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputNine" prefHeight="54.0" prefWidth="78.0" text="9">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Times" layoutX="341.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputTimes" prefHeight="54.0" prefWidth="78.0" text="x">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_ClearError" layoutX="33.0" layoutY="282.0" mnemonicParsing="false" onAction="#ClearError" prefHeight="54.0" prefWidth="78.0" text="CE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Clear" layoutX="134.0" layoutY="282.0" mnemonicParsing="false" onAction="#Clear" prefHeight="54.0" prefWidth="78.0" text="C">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Delete" layoutX="238.0" layoutY="282.0" mnemonicParsing="false" onAction="#Delete" prefHeight="54.0" prefWidth="78.0" text="←">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Devide" layoutX="341.0" layoutY="282.0" mnemonicParsing="false" onAction="#inputDevide" prefHeight="54.0" prefWidth="78.0" text="÷">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Percent" layoutX="33.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputPercent" prefHeight="54.0" prefWidth="78.0" text="\%">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Rooting" layoutX="134.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputRooting" prefHeight="54.0" prefWidth="78.0" text="√">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Square" layoutX="238.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputSquare" prefHeight="54.0" prefWidth="78.0" text="X²">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_Reciprocal" layoutX="341.0" layoutY="215.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="78.0" text="1/x">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_MC" layoutX="33.0" layoutY="156.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="MC">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_MS" layoutX="134.0" layoutY="156.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="MS">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_MR" layoutX="238.0" layoutY="156.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="MR">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="Button_M" layoutX="341.0" layoutY="156.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="M+">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
