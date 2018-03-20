@@ -39,6 +39,10 @@ public class CalController {
 	
 	/*oprator*/
 	@FXML
+	private Button Button_LP;
+	@FXML
+	private Button Button_RP;
+	@FXML
 	private Button Button_Add;
 	@FXML
 	private Button Button_Minus;
@@ -56,6 +60,10 @@ public class CalController {
 	private Button Button_Rooting;
 	@FXML
 	private Button Button_Square;
+	@FXML
+	private Button Button_Ln;
+	@FXML
+	private Button Button_Pi;
 	/*display*/
 	@FXML
 	private TextField Display;
@@ -91,6 +99,8 @@ public class CalController {
 		Display.appendText("9");
 	}
 	
+	
+	
 	public void Clear(ActionEvent event) {
 		Display.setText("");
 	}
@@ -101,6 +111,8 @@ public class CalController {
 		if(Display.getLength() > 0)
 			Display.deleteText(Display.getLength()-1, Display.getLength());
 	}
+	
+	
 	
 	public void inputAdd(ActionEvent event) {
 		Display.appendText("+");
@@ -128,5 +140,17 @@ public class CalController {
 	}
 	public void inputSquare(ActionEvent event) {
 		Display.appendText("²");
+	}
+	public void inputLP(ActionEvent event) {
+		Display.appendText("(");
+	}
+	public void inputRP(ActionEvent event) {
+		Display.appendText(")");
+	}
+	public void inputLn(ActionEvent event) {
+		Display.appendText("ln");
+	}
+	public void inputPi(ActionEvent event) {
+		Display.appendText("π");
 	}
 }
