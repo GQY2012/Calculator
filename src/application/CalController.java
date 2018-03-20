@@ -190,7 +190,7 @@ public class CalController {
 	}
 	public void inputEqual(ActionEvent event) {
 	//	Display.appendText(Calculator.conversion(input.expression.toString()));
-		System.out.println(Display.getText());
+	//	System.out.println(Display.getText());
 		Calculator cal  = new Calculator();
 		double result = cal.calculate(Display.getText().toString());
 	//	System.out.println(result);

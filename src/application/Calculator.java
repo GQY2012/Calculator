@@ -43,9 +43,9 @@ public class Calculator {
         int count = 0;//上次算术运算符到本次算术运算符的字符的长度便于或者之间的数值  
         char currentOp  ,peekOp;//当前操作符和栈顶操作符  
         for(int i=0;i<arr.length;i++) {  
-            currentOp = arr[i];  
+            currentOp = shiftOperator(arr[i]);  
             if(isOperator(currentOp)) {//如果当前字符是运算符  
-                if(count > 0) {  
+            	if(count > 0) {  
                     postfixStack.push(new String(arr,currentIndex,count));//取两个运算符之间的数字  
                 }  
                 peekOp = opStack.peek();  
@@ -82,8 +82,16 @@ public class Calculator {
      * @return 
      */  
     private boolean isOperator(char c) {  
-        return c == '+' || c == '-' || c == 'x' || c == '÷' || c == '(' ||c == ')';  
-    }  
+        return c == '+' || c == '-' || c == '*' || c == '/' || c == '(' ||c == ')';  
+    } 
+    
+    public char shiftOperator(char c) {
+    	if(c == 'x')
+    		c = '*';
+    	else if(c == '÷')
+    		c = '/';
+    	return c;
+    }
       
     /** 
      * 利用ASCII码-40做下标去算术符号优先级 
@@ -115,10 +123,10 @@ public class Calculator {
             case '-':  
                 result = String.valueOf(Acalculator.sub(firstValue, secondValue));  
                 break;  
-            case 'x':  
+            case '*':  
                 result = String.valueOf(Acalculator.mul(firstValue, secondValue));  
                 break;  
-            case '÷':  
+            case '/':  
                 result = String.valueOf(Acalculator.div(firstValue, secondValue));  
                 break;  
         }  
