@@ -35,7 +35,7 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Equal" layoutX="431.0" layoutY="541.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="78.0" text="=">
+      <Button fx:id="Button_Equal" layoutX="431.0" layoutY="541.0" mnemonicParsing="false" onAction="#inputEqual" prefHeight="54.0" prefWidth="78.0" text="=">
          <font>
             <Font size="26.0" />
          </font>
@@ -170,7 +170,7 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Factorial" layoutX="24.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputPercent" prefHeight="54.0" prefWidth="78.0" text="！">
+      <Button fx:id="Button_Factorial" layoutX="24.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputFactorial" prefHeight="54.0" prefWidth="78.0" text="！">
          <font>
             <Font size="26.0" />
          </font>
