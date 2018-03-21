@@ -133,5 +133,70 @@ class Acalculator {
         java.math.BigDecimal b = new java.math.BigDecimal(v);  
         java.math.BigDecimal one = new java.math.BigDecimal("1");  
         return b.divide(one, scale, java.math.BigDecimal.ROUND_HALF_UP).doubleValue();  
-    }  
+    } 
+    
+    /**
+     * 求模
+     * @param v1 被除数
+     * @param v2 除数
+     * @return 余数
+     */
+    
+    public static double mod(String v1, String v2) {  
+        java.math.BigDecimal b1 = new java.math.BigDecimal(v1);  
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
+        return b1.divideAndRemainder(b2)[1].doubleValue();  
+    }
+    
+    /**
+     * 阶乘
+     * @param v
+     * @return
+     */
+    
+    public static double factorial(String v) {  
+        java.math.BigDecimal b = new java.math.BigDecimal(v); 
+        java.math.BigDecimal result = new java.math.BigDecimal(1);
+        for(int i = 1;i <= b.intValue();i++)
+        	result = result.multiply(new java.math.BigDecimal(i));
+        return result.doubleValue();  
+    }
+    
+    /**
+     * 次方
+     * @param v
+     * @return
+     */
+    
+    public static double pow(String v) {  
+        java.math.BigDecimal b = new java.math.BigDecimal(v);       
+        return b.pow(2).doubleValue();  
+    }
+    
+    /**
+     * 方根
+     * @param v
+     * @return
+     */
+    
+    public static double sqrt(String v) {  
+        java.math.BigDecimal b = new java.math.BigDecimal(v);       
+        return Math.sqrt(b.doubleValue());  
+    }
+    
+    /**
+     * 自然对数
+     * @param v
+     * @return
+     */
+    
+    public static double ln(String v) {  
+        java.math.BigDecimal b = new java.math.BigDecimal(v);       
+        return Math.log(b.doubleValue());  
+    }
+    
+    
+    
+    
+    
 }  

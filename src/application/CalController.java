@@ -45,11 +45,13 @@ public class CalController {
 	@FXML
 	private Button Button_Add;
 	@FXML
-	private Button Button_Minus;
+	private Button Button_Sub;
 	@FXML
-	private Button Button_Times;
+	private Button Button_Mul;
 	@FXML
-	private Button Button_Devide;
+	private Button Button_Div;
+	@FXML
+	private Button Button_Mod;
 	@FXML
 	private Button Button_Equal;
 	@FXML
@@ -59,9 +61,9 @@ public class CalController {
 	@FXML
 	private Button Button_Percent;
 	@FXML
-	private Button Button_Rooting;
+	private Button Button_Sqrt;
 	@FXML
-	private Button Button_Square;
+	private Button Button_Pow;
 	@FXML
 	private Button Button_Ln;
 	@FXML
@@ -126,7 +128,7 @@ public class CalController {
 	public void Delete(ActionEvent event) {
 		if(Display.getLength() > 0){
 			Display.deleteText(Display.getLength()-1, Display.getLength());
-	//		input.expression.deleteCharAt(Display.getLength());
+	
 		}
 	}
 	
@@ -136,17 +138,20 @@ public class CalController {
 		Display.appendText("+");
 	//	input.expression.append("+");
 	}
-	public void inputMinus(ActionEvent event) {
+	public void inputSub(ActionEvent event) {
 		Display.appendText("-");
 	//	input.expression.append("-");
 	}
-	public void inputTimes(ActionEvent event) {
+	public void inputMul(ActionEvent event) {
 		Display.appendText("x");
 	//	input.expression.append("*");
 	}
-	public void inputDevide(ActionEvent event) {
+	public void inputDiv(ActionEvent event) {
 		Display.appendText("÷");
 	//	input.expression.append("/");
+	}
+	public void inputMod(ActionEvent event) {
+		Display.appendText("%");
 	}
 	public void inputNeq(ActionEvent event) {
 		Display.appendText("-");
@@ -160,11 +165,11 @@ public class CalController {
 		Display.appendText("%");
 	//	input.expression.append("%");
 	}
-	public void inputRooting(ActionEvent event) {
+	public void inputSqrt(ActionEvent event) {
 		Display.appendText("√");
 	//	input.expression.append("√");
 	}
-	public void inputSquare(ActionEvent event) {
+	public void inputPow(ActionEvent event) {
 		Display.appendText("²");
 	//	input.expression.append("²");
 	}
@@ -194,6 +199,6 @@ public class CalController {
 		Calculator cal  = new Calculator();
 		double result = cal.calculate(Display.getText().toString());
 	//	System.out.println(result);
-		Display.setText(String.valueOf(result));
+		Display.setText(Double.toString(result));
 	}
 }

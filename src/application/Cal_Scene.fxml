@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="617.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" 
-xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
+<AnchorPane prefHeight="617.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
    <children>
       <TextField fx:id="Display" layoutX="31.0" layoutY="66.0" prefHeight="61.0" prefWidth="471.0">
          <font>
@@ -75,7 +74,7 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Minus" layoutX="431.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputMinus" prefHeight="54.0" prefWidth="78.0" text="-">
+      <Button fx:id="Button_Sub" layoutX="431.0" layoutY="411.0" mnemonicParsing="false" onAction="#inputSub" prefHeight="54.0" prefWidth="78.0" text="-">
          <font>
             <Font size="26.0" />
          </font>
@@ -95,7 +94,7 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Times" layoutX="431.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputTimes" prefHeight="54.0" prefWidth="78.0" text="x">
+      <Button fx:id="Button_Mul" layoutX="431.0" layoutY="348.0" mnemonicParsing="false" onAction="#inputMul" prefHeight="54.0" prefWidth="78.0" text="x">
          <font>
             <Font size="26.0" />
          </font>
@@ -115,7 +114,7 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Devide" layoutX="431.0" layoutY="282.0" mnemonicParsing="false" onAction="#inputDevide" prefHeight="54.0" prefWidth="78.0" text="÷">
+      <Button fx:id="Button_Div" layoutX="431.0" layoutY="282.0" mnemonicParsing="false" onAction="#inputDiv" prefHeight="54.0" prefWidth="78.0" text="÷">
          <font>
             <Font size="26.0" />
          </font>
@@ -125,17 +124,17 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Rooting" layoutX="224.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputRooting" prefHeight="54.0" prefWidth="78.0" text="√">
+      <Button fx:id="Button_Sqrt" layoutX="224.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputSqrt" prefHeight="54.0" prefWidth="78.0" text="√">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Square" layoutX="328.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputSquare" prefHeight="54.0" prefWidth="78.0" text="X²">
+      <Button fx:id="Button_Pow" layoutX="328.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputPow" prefHeight="54.0" prefWidth="78.0" text="X²">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Reciprocal" layoutX="431.0" layoutY="215.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="78.0" text="1/x">
+      <Button fx:id="Button_Reciprocal" layoutX="24.0" layoutY="215.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="78.0" text="1/x">
          <font>
             <Font size="26.0" />
          </font>
@@ -180,14 +179,14 @@ xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Percent" layoutX="24.0" layoutY="282.0" mnemonicParsing="false" onAction="#inputPercent" prefHeight="54.0" prefWidth="78.0" text="\%">
+      <Button fx:id="Button_Percent" layoutX="24.0" layoutY="282.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="78.0" text="\%..">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Mod" layoutX="24.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputPercent" prefHeight="54.0" prefWidth="78.0" text="Mod">
+      <Button fx:id="Button_Mod" layoutX="431.0" layoutY="215.0" mnemonicParsing="false" onAction="#inputMod" prefHeight="54.0" prefWidth="78.0" text="\%">
          <font>
-            <Font size="20.0" />
+            <Font size="25.0" />
          </font>
       </Button>
       <Button fx:id="Button_Mminus" layoutX="431.0" layoutY="156.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="M-">
