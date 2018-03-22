@@ -1,12 +1,13 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Collections;  
 import java.util.Stack;  
-  
+
 public class Calculator {  
     private Stack<String> postfixStack  = new Stack<String>();//后缀式栈  
     private Stack<Character> opStack  = new Stack<Character>();//运算符栈    
-
+    
     /** 
      * 按照给定的表达式计算 
      * @param expression 要计算的表达式例如:5！+12*(-3+5)/7 
@@ -14,6 +15,7 @@ public class Calculator {
      */  
     public double calculate(String expression) {  
         Stack<String> resultStack  = new Stack<String>();  
+   //   prepare(prepareNeq(expression));
         prepare(expression);  
         Collections.reverse(postfixStack);//将后缀式栈反转  
         String firstValue  ,secondValue,currentValue;//参与计算的第一个值，第二个值和算术运算符  
@@ -41,82 +43,78 @@ public class Calculator {
      * 数据准备阶段将表达式转换成为后缀式栈 
      * @param expression 
      */  
- /*   private void prepare(String expression) {  
-        opStack.push(',');//运算符放入栈底元素逗号，此符号优先级最低  
-        char[] arr  = expression.toCharArray();  
-        int currentIndex  = 0;//当前字符的位置  
-        int count = 0;//上次算术运算符到本次算术运算符的字符的长度便于或者之间的数值  
-        char currentOp,peekOp;//当前操作符和栈顶操作符  
-        for(int i=0;i<arr.length;i++) {  
-            currentOp = shiftOperator(arr[i]);  
-            if(isOperator(currentOp)) {//如果当前字符是运算符  
-            	if((arr.length - i > 1) && arr[i+1] == 'n')//ln
-					i++;
-            	if(count > 0) {  
-                    postfixStack.push(new String(arr,currentIndex,count));//取两个运算符之间的数字  
-                }  
-                peekOp = opStack.peek();  
-                if(currentOp == ')') {//遇到反括号则将运算符栈中的元素移除到后缀式栈中直到遇到左括号  
-                    while(opStack.peek() != '(') {  
-                        postfixStack.push(String.valueOf(opStack.pop()));  
-                    }  
-                    opStack.pop();  
-                } else {  
-                    while(currentOp != '(' && peekOp != ',' && compare(currentOp,peekOp) ) {  
-                        postfixStack.push(String.valueOf(opStack.pop()));  
-                        peekOp = opStack.peek();  
-                    }  
-                    opStack.push(currentOp);  
-                }  
-                count = 0;  
-                currentIndex = i+1;  
-            } else {  
-                count++;  
-            }  
-        }  
-        if(count > 1 || (count == 1 && !isOperator(arr[currentIndex]))) {//最后一个字符不是括号或者其他运算符的则加入后缀式栈中  
-            postfixStack.push(new String(arr,currentIndex,count));  
-        }   
-          
-        while(opStack.peek() != ',') {  
-            postfixStack.push(String.valueOf( opStack.pop()));//将操作符栈中的剩余的元素添加到后缀式栈中  
-        }  
-    }  */
-    
     
     private void prepare(String expression) {    
         char[] arr  = expression.toCharArray();     
         char currentOp;//当前操作符  
         for(int i = 0;i < arr.length;i++) { 
-        	currentOp = shiftOperator(arr[i]); 
+        	currentOp = shiftOperator(arr[i],i,arr); 
         	if(isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
-            	if((arr.length - i > 1) && arr[i+1] == 'n')//ln
+            	
+        /*		if(arr.length - i > 1 && arr[i+1] == 'n')//ln
 					i++;
-            	if(opStack.isEmpty()) {
+            	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'd')//mod
+					i += 2;
+            	else if((arr.length - i > 2) && arr[i+1] == 'i' && arr[i+2] == 'n')//sin
+            		i += 2;
+            	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 's')//cos
+            		i += 2;
+            	else if((arr.length - i > 2) && arr[i+1] == 'a' && arr[i+2] == 'n')//tan
+            		i += 2;
+            	else if((arr.length - i > 2) && arr[i+1] == 'e' && arr[i+2] == 'g')//deg
+            		i += 2;
+            	*/
+            	
+            	i = isLongOperator(currentOp,i,arr);
+            	
+          /*  	if( i > 0 && arr[i] == '√' && Character.isDigit(arr[i-1])) {
+            		currentOp = 'r';
+            	}
+            	if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
+            		currentOp = '~';
+            	}*/
+            	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
+            		continue;
+            	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
             		opStack.push(currentOp);
             	}
-            	else {
-            		if(getoperatPriority(currentOp) > getoperatPriority(opStack.peek())) {
-            		opStack.push(currentOp);
-            		}
-            		else {
-            			while(!opStack.isEmpty() && getoperatPriority(currentOp) < getoperatPriority(opStack.peek()))  {  
-                            postfixStack.push(String.valueOf(opStack.pop()));    
-                        }  
+            	else {//符号栈不为空
+            		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符则直接入运算符栈
             			opStack.push(currentOp);
+            		}
+            		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符则直接如后缀式栈
+            			postfixStack.push(String.valueOf(currentOp));
+            		}
+            		else {//如果是双目运算符
+	            		if(getoperatPriority(currentOp) > getoperatPriority(opStack.peek())) {//当前运算符优先级大于栈顶运算符优先级
+	            		opStack.push(currentOp);
+	            		}
+	            		else {//当前运算符优先级大于栈顶运算符优先级
+	            			while(!opStack.isEmpty() && getoperatPriority(currentOp) <= getoperatPriority(opStack.peek()))  {  
+	                            postfixStack.push(String.valueOf(opStack.pop()));    
+	                        }  
+	            			opStack.push(currentOp);
+	            		}
             		}
             	}
             }
-        	else if(Character.isDigit(currentOp)){
+        	else if(Character.isDigit(currentOp)){//如果是数字
         		int count = 1;
-        		while((arr.length - i > 1) && Character.isDigit(arr[i+1])){
+        		while((arr.length - i > 1) && (Character.isDigit(arr[i+1]) ||arr[i+1] == '.')){
         			count++;
         			i++;
         			}
         		postfixStack.push(new String(arr,i-count+1,count));
         	}
-        	else if(currentOp == 'π') {
+        	else if(currentOp == 'π') {//如果是π
         		postfixStack.push(String.valueOf(Math.PI));
+        	}
+        	else if(currentOp == 'e') {//如果是e
+        		postfixStack.push(String.valueOf(Math.E));
+        	}
+        	else if((arr.length - i > 2) && arr[i] == 'A' && arr[i+1] == 'n' && arr[i+2] == 's') {
+        		postfixStack.push(String.valueOf(CalController.result));
+        		i += 2;
         	}
         	else if(currentOp == '(') {
         		opStack.push(currentOp);
@@ -128,34 +126,74 @@ public class Calculator {
         		opStack.pop();
         	}
         }
-      	while(!opStack.isEmpty()) {  
+      	while(!opStack.isEmpty()) {  //最后运算符栈剩余的符号全部入后缀式栈
                 postfixStack.push(String.valueOf(opStack.pop()));  
             } 
      }
+    
     /** 
-     * 判断是否为算术符号 
+     * 判断算术符号 
      * @param c 
      * @return 
-     */  
-    private boolean isOperator(char c) {  
+     */
+    
+    private boolean isOperator(char c) {  //判断运算符
         return isBinaryOperator(c)|| isUnaryOperator(c);  
     } 
      
-    private boolean isBinaryOperator(char c) {  
+    private boolean isBinaryOperator(char c) {  //判断双目运算符
         return c == '+' || c == '-' || c == '*' || c == '/' 
-        		|| c == '(' ||c == ')' || c == '%';  
+        		|| c == '(' || c == ')' || c == 'm' || c == '^' || c == 'r'
+        		|| c == '&' || c == '|' || c == 'x';  
     } 
     
-    private boolean isUnaryOperator(char c) {  
-        return c == '!' || c == '²' || c == '√' |c == 'l';  
+    private boolean isUnaryOperator(char c) { //判断单目运算符 
+        return isLUnaryOperator(c) || isRUnaryOperator(c);  
     }
     
-    public char shiftOperator(char c) {
-    	if(c == 'x')
+    private boolean isLUnaryOperator(char c) {  //判断左单目运算符
+        return c == '√' || c == 'l' || c == '~' || c == '#'
+        		|| c == 's' || c == 'c' || c == 't' || c == 'd';  
+    }
+    
+    private boolean isRUnaryOperator(char c) {  //判断右单目运算符
+        return c == '!' || c == '²' || c == '%';  
+    }
+    
+    private char shiftOperator(char c,int i,char[] arr) { //部分运算符转换
+    	if(c == 'x' || c == '×')
     		c = '*';
     	else if(c == '÷')
     		c = '/';
+    	else if(c == '（')
+    		c = '(';
+    	else if(c == '）')
+    		c = ')';
+    	else if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
+    		c = '~';
+    	}
+    	else if( i > 0 && arr[i] == '√' && Character.isDigit(arr[i-1])) {
+    		c = 'r';
+    	}
     	return c;
+    }
+    
+    private int isLongOperator(char c,int i,char[] arr) {
+    	if(arr.length - i > 1 && arr[i+1] == 'n')//ln
+			i++;
+    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'd')//mod
+			i += 2;
+    	else if((arr.length - i > 2) && arr[i+1] == 'i' && arr[i+2] == 'n')//sin
+    		i += 2;
+    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 's')//cos
+    		i += 2;
+    	else if((arr.length - i > 2) && arr[i+1] == 'a' && arr[i+2] == 'n')//tan
+    		i += 2;
+    	else if((arr.length - i > 2) && arr[i+1] == 'e' && arr[i+2] == 'g')//deg
+    		i += 2;
+    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'r')//deg
+    		i += 2;
+    	return i;
     }
     
     /**
@@ -166,19 +204,43 @@ public class Calculator {
     
     private int getoperatPriority(char c) {
     	switch(c) {
-    	case ',':return -1;
-    	case '(':
-    	case '.':return 0;
+    	case '(':return 0;
+    	
+    	case '|':return 1;
+    	
+    	case 'x':return 2;
+    	
+    	case '&':return 3;
+    	
     	case '+':
-    	case '-':return 1;
+    	case '-':return 4;
+    	
     	case '*':
     	case '/':
-    	case '%':return 2;
+    	case 'm'://mod
+    			return 5;
+    	
+    	case '~'://negative
+    	case '#'://positive
     	case '²':
+    	case '^':
     	case '√':
-    	case 'l':
-    	case '!':return 3;
-    	case ')':return 4;
+    	case 'r'://rooting
+    			return 6;
+    	
+    	case 'l'://ln
+    	case 's'://sin
+    	case 'c'://cos
+    	case 't'://tan
+    	case '%':
+    	case '!':
+    			return 7;
+    	
+    	case 'd'://deg
+    			return 8;
+    	
+    	case ')':
+    			return 9;
     	}
     	return -1;
     	
@@ -206,9 +268,24 @@ public class Calculator {
             case '/':  
                 result = String.valueOf(Acalculator.div(firstValue, secondValue));  
                 break; 
-            case '%':
+            case 'm':
             	result = String.valueOf(Acalculator.mod(firstValue, secondValue));  
                 break; 
+            case '^':
+            	result = String.valueOf(Acalculator.pow(firstValue, secondValue));  
+                break; 
+            case 'r':
+            	result = String.valueOf(Acalculator.rooting(firstValue, secondValue));  
+                break;
+            case '&':
+            	result = String.valueOf(Acalculator.and(firstValue, secondValue));  
+                break; 
+            case '|':
+            	result = String.valueOf(Acalculator.or(firstValue, secondValue));  
+                break;
+            case 'x':
+            	result = String.valueOf(Acalculator.xor(firstValue, secondValue));  
+                break;
         }  
         return result;  
     }  
@@ -227,13 +304,31 @@ public class Calculator {
 				result = String.valueOf(Acalculator.factorial(Value));  
 				break;
 			case '²':
-				result = String.valueOf(Acalculator.pow(Value));  
+				result = String.valueOf(Acalculator.square(Value));  
 				break;
 	    	case '√':
 	    		result = String.valueOf(Acalculator.sqrt(Value));  
 				break;
 	    	case 'l':
 	    		result = String.valueOf(Acalculator.ln(Value));  
+				break;
+	    	case '%':
+	    		result = String.valueOf(Acalculator.percent(Value));  
+				break;	
+	    	case '~':
+	    		result = String.valueOf(Acalculator.neq(Value));  
+				break;
+	    	case 's':
+	    		result = String.valueOf(Acalculator.sin(Value));  
+				break;
+	    	case 'c':
+	    		result = String.valueOf(Acalculator.cos(Value));  
+				break;
+	    	case 't':
+	    		result = String.valueOf(Acalculator.tan(Value));  
+				break;
+	    	case 'd':
+	    		result = String.valueOf(Acalculator.deg(Value));  
 				break;
 		}
 		return result;

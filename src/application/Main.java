@@ -18,7 +18,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass()
                     .getResource("/application/Cal_Scene.fxml"));
 
-            primaryStage.setTitle("Calculator 1.0");
+            primaryStage.setTitle("Calculator 2.0");
             primaryStage.setScene(new Scene(root));
 			primaryStage.show();
 		} catch(Exception e) {

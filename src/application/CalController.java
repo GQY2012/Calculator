@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +9,13 @@ import javafx.scene.control.TextField;
 
 
 public class CalController {
+	
+	public static ArrayList<String> saveExpression = new ArrayList<String>();//保存的所有历史表达式
+    public static StringBuffer currentExpression = new StringBuffer("");//当前表达式
+	public static int index = 0;
+    public static double result = 0;
+	
+	
 	
 	/*digits*/
 	@FXML
@@ -31,13 +40,23 @@ public class CalController {
 	private Button Button_Nine;
 	/*function*/
 	@FXML
-	private Button Button_ClearError;
-	@FXML
 	private Button Button_Clear;
 	@FXML
 	private Button Button_Delete;
+	@FXML
+	private Button Button_Ans;
+	/*
+	@FXML
+	private Button Button_MC;
+	@FXML
+	private Button Button_MS;
+	@FXML
+	private Button Button_MR;
+	*/
+	@FXML
+	private Button Button_Esc;
 	
-	/*oprator*/
+	/*Operator*/
 	@FXML
 	private Button Button_LP;
 	@FXML
@@ -51,7 +70,15 @@ public class CalController {
 	@FXML
 	private Button Button_Div;
 	@FXML
+	private Button Button_Fraction;
+	@FXML
 	private Button Button_Mod;
+	@FXML
+	private Button Button_Xor;
+	@FXML
+	private Button Button_And;
+	@FXML
+	private Button Button_Or;
 	@FXML
 	private Button Button_Equal;
 	@FXML
@@ -63,11 +90,28 @@ public class CalController {
 	@FXML
 	private Button Button_Sqrt;
 	@FXML
-	private Button Button_Pow;
+	private Button Button_Square;
 	@FXML
-	private Button Button_Ln;
+	private Button Button_Factorial;
+	@FXML
+	private Button Button_ln;
 	@FXML
 	private Button Button_Pi;
+	@FXML
+	private Button Button_E;
+	@FXML
+	private Button Button_Pow;
+	@FXML
+	private Button Button_Rooting;
+	@FXML
+	private Button Button_Sin;
+	@FXML
+	private Button Button_Cos;
+	@FXML
+	private Button Button_Tan;
+	@FXML
+	private Button Button_Deg;
+	
 	/*display*/
 	@FXML
 	private TextField Display;
@@ -122,15 +166,36 @@ public class CalController {
 		Display.setText("");
 	//	input.expression = new StringBuffer("0");
 	}
-	public void ClearError(ActionEvent event) {
-		Display.setText("");
-	}
 	public void Delete(ActionEvent event) {
 		if(Display.getLength() > 0){
 			Display.deleteText(Display.getLength()-1, Display.getLength());
-	
 		}
 	}
+	public void Esc(ActionEvent event) {
+		Display.setText("");
+		saveExpression.clear();
+		index = 0;
+		result = 0;
+	}
+	/*
+	public void MC(ActionEvent event) {
+		saveExpression.remove(index);
+	}
+	public void MS(ActionEvent event) {
+		saveExpression.add(currentExpression.toString());	
+		index = saveExpression.size();
+	}
+	public void MR(ActionEvent event) {
+		if(index >= 0)
+		{
+			Display.setText(saveExpression.get(index));
+			index--;
+		}
+	}*/
+	public void inputAns(ActionEvent event) {
+		Display.appendText("Ans");
+	}
+	
 	
 	
 	
@@ -148,14 +213,27 @@ public class CalController {
 	}
 	public void inputDiv(ActionEvent event) {
 		Display.appendText("÷");
+	//	input.expression.append("÷");
+	}
+	public void inputFraction(ActionEvent event) {
+		Display.appendText("/");
 	//	input.expression.append("/");
 	}
 	public void inputMod(ActionEvent event) {
-		Display.appendText("%");
+		Display.appendText("mod");
 	}
 	public void inputNeq(ActionEvent event) {
 		Display.appendText("-");
 	//	input.expression.append("-");
+	}
+	public void inputAnd(ActionEvent event) {
+		Display.appendText("&");
+	}
+	public void inputOr(ActionEvent event) {
+		Display.appendText("|");
+	}
+	public void inputXor(ActionEvent event) {
+		Display.appendText("Xor");
 	}
 	public void inputPoint(ActionEvent event) {
 		Display.appendText(".");
@@ -169,7 +247,7 @@ public class CalController {
 		Display.appendText("√");
 	//	input.expression.append("√");
 	}
-	public void inputPow(ActionEvent event) {
+	public void inputSquare(ActionEvent event) {
 		Display.appendText("²");
 	//	input.expression.append("²");
 	}
@@ -189,15 +267,46 @@ public class CalController {
 		Display.appendText("π");
 	//	input.expression.append("π");
 	}
+	public void inputE(ActionEvent event) {
+		Display.appendText("e");
+	//	input.expression.append("e");
+	}
 	public void inputFactorial(ActionEvent event) {
 		Display.appendText("!");
 	//	input.expression.append("!");
 	}
+	public void inputDeg(ActionEvent event) {
+		Display.appendText("deg");
+	//	input.expression.append("deg");
+	}
+	public void inputPow(ActionEvent event) {
+		Display.appendText("^");
+	//	input.expression.append("^");
+	}
+	public void inputRooting(ActionEvent event) {
+		Display.appendText("√");
+	//	input.expression.append("√");
+	}
+	public void inputSin(ActionEvent event) {
+		Display.appendText("sin");
+	//	input.expression.append("sin");
+	}
+	public void inputCos(ActionEvent event) {
+		Display.appendText("cos");
+	//	input.expression.append("cos");
+	}
+	public void inputTan(ActionEvent event) {
+		Display.appendText("tan");
+	//	input.expression.append("tan");
+	}
+	
+	
 	public void inputEqual(ActionEvent event) {
 	//	Display.appendText(Calculator.conversion(input.expression.toString()));
 	//	System.out.println(Display.getText());
 		Calculator cal  = new Calculator();
-		double result = cal.calculate(Display.getText().toString());
+		saveExpression.add(Display.getText());
+		result = cal.calculate(Display.getText());
 	//	System.out.println(result);
 		Display.setText(Double.toString(result));
 	}

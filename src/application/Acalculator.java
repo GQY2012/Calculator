@@ -1,5 +1,7 @@
 package application;
 
+
+
 class Acalculator {  
 	  
     // 默认除法运算精度  
@@ -163,18 +165,31 @@ class Acalculator {
     }
     
     /**
-     * 次方
+     * 平方
      * @param v
      * @return
      */
     
-    public static double pow(String v) {  
-        java.math.BigDecimal b = new java.math.BigDecimal(v);       
-        return b.pow(2).doubleValue();  
+    public static double square(String v) {
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);       
+        return Math.pow(b.doubleValue(), 2.0);
     }
     
     /**
-     * 方根
+     * 次方
+     * @param v1 
+     * @param v2 
+     * @return
+     */
+    
+    public static double pow(String v1,String v2) {
+    	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);  
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);       
+        return Math.pow(b1.doubleValue(), b2.doubleValue()); 
+    }
+    
+    /**
+     * 平方根
      * @param v
      * @return
      */
@@ -182,6 +197,58 @@ class Acalculator {
     public static double sqrt(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v);       
         return Math.sqrt(b.doubleValue());  
+    }
+    
+    /**
+     * 次方根
+     * @param v1 
+     * @param v2 
+     * @return
+     */
+    
+    public static double rooting(String v1,String v2) { 
+    	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);    
+        return Math.pow(b2.doubleValue(),1.0/b1.doubleValue());
+    }
+    
+    /**
+     * and
+     * @param v1 
+     * @param v2 
+     * @return
+     */
+    
+    public static double and(String v1,String v2) { 
+    	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
+        return b1.intValue() & b2.intValue();    
+    }
+    
+    /**
+     * or
+     * @param v1 
+     * @param v2 
+     * @return
+     */
+    
+    public static double or(String v1,String v2) { 
+    	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
+        return b1.intValue() | b2.intValue();    
+    }
+    
+    /**
+     * xor
+     * @param v1 
+     * @param v2 
+     * @return
+     */
+    
+    public static double xor(String v1,String v2) { 
+    	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
+        return b1.intValue() ^ b2.intValue();    
     }
     
     /**
@@ -195,8 +262,71 @@ class Acalculator {
         return Math.log(b.doubleValue());  
     }
     
+    /**
+     * 百分数
+     * @param v
+     * @return
+     */
+    
+    public static double percent(String v) {  
+    	return div(v,String.valueOf(100.0));
+    }
     
     
+    /**
+     * 负数
+     * @param v
+     * @return
+     */
+    
+    public static double neq(String v) {  
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	return b.negate().doubleValue();
+    }
+    
+    /**
+     * sin
+     * @param v
+     * @return
+     */
+    
+    public static double sin(String v) {  
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	return Math.sin(b.doubleValue());
+    }
+    
+    /**
+     * cos
+     * @param v
+     * @return
+     */
+    
+    public static double cos(String v) {  
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	return Math.cos(b.doubleValue());
+    }
+    
+    /**
+     * tan
+     * @param v
+     * @return
+     */
+    
+    public static double tan(String v) {  
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	return Math.tan(b.doubleValue());
+    }
+    
+    /**
+     * deg
+     * @param v
+     * @return
+     */
+    
+    public static double deg(String v) {  
+    	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	return Math.toDegrees(b.doubleValue());
+    }
     
     
 }  
