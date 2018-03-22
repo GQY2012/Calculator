@@ -10,9 +10,9 @@ import javafx.scene.control.TextField;
 
 public class CalController {
 	
-	public static ArrayList<String> saveExpression = new ArrayList<String>();//保存的所有历史表达式
+//	public static ArrayList<String> saveExpression = new ArrayList<String>();//保存的所有历史表达式
     public static StringBuffer currentExpression = new StringBuffer("");//当前表达式
-	public static int index = 0;
+//	public static int index = 0;
     public static double result = 0;
 	
 	
@@ -173,8 +173,8 @@ public class CalController {
 	}
 	public void Esc(ActionEvent event) {
 		Display.setText("");
-		saveExpression.clear();
-		index = 0;
+	//	saveExpression.clear();
+	//	index = 0;
 		result = 0;
 	}
 	/*
@@ -305,7 +305,7 @@ public class CalController {
 	//	Display.appendText(Calculator.conversion(input.expression.toString()));
 	//	System.out.println(Display.getText());
 		Calculator cal  = new Calculator();
-		saveExpression.add(Display.getText());
+	//	saveExpression.add(Display.getText());
 		result = cal.calculate(Display.getText());
 	//	System.out.println(result);
 		Display.setText(Double.toString(result));

@@ -49,29 +49,7 @@ public class Calculator {
         for(int i = 0;i < arr.length;i++) { 
         	currentOp = shiftOperator(arr[i],i,arr); 
         	if(isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
-            	
-        /*		if(arr.length - i > 1 && arr[i+1] == 'n')//ln
-					i++;
-            	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'd')//mod
-					i += 2;
-            	else if((arr.length - i > 2) && arr[i+1] == 'i' && arr[i+2] == 'n')//sin
-            		i += 2;
-            	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 's')//cos
-            		i += 2;
-            	else if((arr.length - i > 2) && arr[i+1] == 'a' && arr[i+2] == 'n')//tan
-            		i += 2;
-            	else if((arr.length - i > 2) && arr[i+1] == 'e' && arr[i+2] == 'g')//deg
-            		i += 2;
-            	*/
-            	
             	i = isLongOperator(currentOp,i,arr);
-            	
-          /*  	if( i > 0 && arr[i] == '√' && Character.isDigit(arr[i-1])) {
-            		currentOp = 'r';
-            	}
-            	if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
-            		currentOp = '~';
-            	}*/
             	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
             		continue;
             	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
