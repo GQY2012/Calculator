@@ -1,7 +1,7 @@
 package application;
 
 import java.util.Collections;  
-import java.util.Stack;  
+import java.util.Stack;
 
 public class Calculator {  
     private Stack<String> postfixStack  = new Stack<String>();//后缀式栈  
@@ -121,7 +121,7 @@ public class Calculator {
     private boolean isBinaryOperator(char c) {  //判断双目运算符
         return c == '+' || c == '-' || c == '*' || c == '/' 
         		|| c == '(' || c == ')' || c == 'm' || c == '^' || c == 'r'
-        		|| c == '&' || c == '|' || c == 'x';  
+        		|| c == '&' || c == '|' || c == 'X';  
     } 
     
     private boolean isUnaryOperator(char c) { //判断单目运算符 
@@ -260,7 +260,7 @@ public class Calculator {
             case '|':
             	result = String.valueOf(Acalculator.or(firstValue, secondValue));  
                 break;
-            case 'x':
+            case 'X':
             	result = String.valueOf(Acalculator.xor(firstValue, secondValue));  
                 break;
         }  

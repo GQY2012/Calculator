@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
@@ -9,14 +11,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="687.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
+<AnchorPane id="pane" prefHeight="695.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalController">
    <children>
-      <TextField fx:id="Display" layoutX="33.0" layoutY="81.0" prefHeight="61.0" prefWidth="471.0">
+      <TextField id="text" fx:id="Display" layoutX="33.0" layoutY="81.0" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" prefHeight="61.0" prefWidth="471.0">
          <font>
             <Font size="25.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextField>
-      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="26.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="26.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../GQY.JPG" />
          </image>
@@ -36,9 +41,9 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Equal" layoutX="433.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputEqual" prefHeight="54.0" prefWidth="78.0" text="=">
+      <Button fx:id="Button_Equal" layoutX="433.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputEqual" prefHeight="54.0" prefWidth="78.0" text="=" textFill="#e00d0d">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Button>
       <Button fx:id="Button_Two" layoutX="226.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputTwo" prefHeight="54.0" prefWidth="78.0" text="2">
@@ -51,9 +56,9 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Neq" layoutX="26.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputNeq" prefHeight="54.0" prefWidth="78.0" text="±">
+      <Button fx:id="Button_Deg" layoutX="26.0" layoutY="360.0" mnemonicParsing="false" onAction="#inputDeg" prefHeight="54.0" prefWidth="78.0" text="deg">
          <font>
-            <Font size="26.0" />
+            <Font size="24.0" />
          </font>
       </Button>
       <Button fx:id="Button_Add" layoutX="433.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputAdd" prefHeight="54.0" prefWidth="78.0" text="+">
@@ -96,7 +101,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Mul" layoutX="433.0" layoutY="426.0" mnemonicParsing="false" onAction="#inputMul" prefHeight="54.0" prefWidth="78.0" text="x">
+      <Button fx:id="Button_Mul" layoutX="433.0" layoutY="426.0" mnemonicParsing="false" onAction="#inputMul" prefHeight="54.0" prefWidth="78.0" text="×">
          <font>
             <Font size="26.0" />
          </font>
@@ -106,14 +111,14 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Clear" layoutX="226.0" layoutY="360.0" mnemonicParsing="false" onAction="#Clear" prefHeight="54.0" prefWidth="78.0" text="C">
+      <Button fx:id="Button_Clear" layoutX="226.0" layoutY="360.0" mnemonicParsing="false" onAction="#Clear" prefHeight="54.0" prefWidth="78.0" text="C" textFill="#de2323">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold Italic" size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Delete" layoutX="330.0" layoutY="360.0" mnemonicParsing="false" onAction="#Delete" prefHeight="54.0" prefWidth="78.0" text="←">
+      <Button fx:id="Button_Delete" layoutX="330.0" layoutY="360.0" mnemonicParsing="false" onAction="#Delete" prefHeight="54.0" prefWidth="78.0" text="←" textFill="#ee0a0a">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold Italic" size="26.0" />
          </font>
       </Button>
       <Button fx:id="Button_Div" layoutX="433.0" layoutY="360.0" mnemonicParsing="false" onAction="#inputDiv" prefHeight="54.0" prefWidth="78.0" text="÷">
@@ -156,9 +161,9 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Esc" layoutX="433.0" layoutY="165.0" mnemonicParsing="false" onAction="#Esc" prefHeight="54.0" prefWidth="78.0" text="Esc" textFill="#e80c0c" wrapText="true">
+      <Button id="ESC" fx:id="Button_Esc" layoutX="433.0" layoutY="165.0" mnemonicParsing="false" onAction="#Esc" prefHeight="54.0" prefWidth="78.0" text="ESC" textFill="#e80c0c" wrapText="true">
          <font>
-            <Font name="System Bold Italic" size="17.0" />
+            <Font name="System Bold Italic" size="23.0" />
          </font>
       </Button>
       <Button fx:id="Button_LP" layoutX="26.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputLP" prefHeight="54.0" prefWidth="78.0" text="(">
@@ -171,17 +176,17 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Factorial" layoutX="26.0" layoutY="489.0" mnemonicParsing="false" onAction="#inputFactorial" prefHeight="54.0" prefWidth="78.0" text="！">
+      <Button fx:id="Button_Factorial" layoutX="26.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputFactorial" prefHeight="54.0" prefWidth="78.0" text="！">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Pi" layoutX="26.0" layoutY="426.0" mnemonicParsing="false" onAction="#inputPi" prefHeight="54.0" prefWidth="78.0" text="π">
+      <Button fx:id="Button_Pi" layoutX="26.0" layoutY="491.0" mnemonicParsing="false" onAction="#inputPi" prefHeight="54.0" prefWidth="78.0" text="π">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_E" layoutX="26.0" layoutY="360.0" mnemonicParsing="false" onAction="#inputE" prefHeight="54.0" prefWidth="78.0" text="e">
+      <Button fx:id="Button_E" layoutX="26.0" layoutY="425.0" mnemonicParsing="false" onAction="#inputE" prefHeight="54.0" prefWidth="78.0" text="e">
          <font>
             <Font size="26.0" />
          </font>
@@ -222,4 +227,10 @@
          </font>
       </Button>
    </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </AnchorPane>

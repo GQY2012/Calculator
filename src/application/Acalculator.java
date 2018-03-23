@@ -325,7 +325,7 @@ class Acalculator {
     
     public static double deg(String v) {  
     	java.math.BigDecimal b = new java.math.BigDecimal(v);
-    	return Math.toDegrees(b.doubleValue());
+    	return Math.toRadians(b.doubleValue());
     }
     
     

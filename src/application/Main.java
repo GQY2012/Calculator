@@ -3,12 +3,12 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 
 public class Main extends Application {
@@ -17,9 +17,12 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass()
                     .getResource("/application/Cal_Scene.fxml"));
-
-            primaryStage.setTitle("Calculator 2.0");
-            primaryStage.setScene(new Scene(root));
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Calculator 3.0");
+			primaryStage.getIcons().add(new Image("file:../../icon.jpg"));
+			Scene se = new Scene(root);
+			se.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            primaryStage.setScene(se);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
