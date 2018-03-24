@@ -1,19 +1,22 @@
 package application;
 
-import java.util.Collections;  
+import java.util.Collections;
 import java.util.Stack;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class Calculator {  
     private Stack<String> postfixStack  = new Stack<String>();//后缀式栈  
     private Stack<Character> opStack  = new Stack<Character>();//运算符栈    
-    
+    @FXML
+	private TextField Display;
     /** 
      * 按照给定的表达式计算 
      * @param expression 要计算的表达式例如:5！+12*(-3+5)/7 
      * @return 
      */  
     public double calculate(String expression) {  
-        Stack<String> resultStack  = new Stack<String>();  
+        Stack<String> resultStack  = new Stack<String>();
    //   prepare(prepareNeq(expression));
         prepare(expression);  
         Collections.reverse(postfixStack);//将后缀式栈反转  
@@ -23,18 +26,23 @@ public class Calculator {
             if(!isOperator(currentValue.charAt(0))) {//如果不是运算符则存入操作数栈中  
                 resultStack.push(currentValue);  
             } 
-            else if(isBinaryOperator(currentValue.charAt(0))){//如果是运算符则从操作数栈中取两个值和该数值一起参与运算  
+            else if(isBinaryOperator(currentValue.charAt(0))){//如果是双目运算符则从操作数栈中取两个值和该运算符一起参与运算  
             	secondValue  = resultStack.pop();  
             	firstValue  = resultStack.pop();  
             	String tempResult  = calculate(firstValue, secondValue, currentValue.charAt(0));  
             	resultStack.push(tempResult);  
             } 
-            else if(isUnaryOperator(currentValue.charAt(0))) {
+            else if(isUnaryOperator(currentValue.charAt(0))) {//如果是单目运算符则从操作数栈中取一个值和该运算符一起参与运算  
             	firstValue  = resultStack.pop();
             	String tempResult  = calculate(firstValue, currentValue.charAt(0)); 
             	resultStack.push(tempResult);
             }
-        }  
+          	else {
+        		throw new IllegalArgumentException("Illegal Expression!");
+          	}
+        }
+        if(resultStack.size() > 1)
+        	throw new IllegalArgumentException("Experssion Error!");
         return Double.valueOf(resultStack.pop());  
     }  
       
@@ -49,20 +57,30 @@ public class Calculator {
         for(int i = 0;i < arr.length;i++) { 
         	currentOp = shiftOperator(arr[i],i,arr); 
         	if(isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
-            	i = isLongOperator(currentOp,i,arr);
+            //	i = indexLongOperator(currentOp,i,arr);
             	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
             		continue;
             	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
+            		if(i == 0 && isRUnaryOperator(currentOp))
+        				throw new IllegalArgumentException("Experssion Error!");
             		opStack.push(currentOp);
+            		i = indexLongOperator(currentOp,i,arr);
             	}
             	else {//符号栈不为空
             		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符则直接入运算符栈
+            			i = indexLongOperator(currentOp,i,arr);
+            			if((i == arr.length - 1 || arr[i+1] != '(' && !Character.isDigit(arr[i+1])))
+            				throw new IllegalArgumentException("Experssion Error!");
             			opStack.push(currentOp);
             		}
             		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符则直接如后缀式栈
+            			i = indexLongOperator(currentOp,i,arr);
+            			if((arr[i-1] != ')' && !Character.isDigit(arr[i-1])))
+            				throw new IllegalArgumentException("Experssion Error!");
             			postfixStack.push(String.valueOf(currentOp));
             		}
             		else {//如果是双目运算符
+            			i = indexLongOperator(currentOp,i,arr);
 	            		if(getoperatPriority(currentOp) > getoperatPriority(opStack.peek())) {//当前运算符优先级大于栈顶运算符优先级
 	            		opStack.push(currentOp);
 	            		}
@@ -102,6 +120,10 @@ public class Calculator {
                 }  
         		opStack.pop();
         	}
+        	else {
+        		throw new IllegalArgumentException("Experssion Error!");
+        	}
+        	
         }
       	while(!opStack.isEmpty()) {  //最后运算符栈剩余的符号全部入后缀式栈
                 postfixStack.push(String.valueOf(opStack.pop()));  
@@ -142,9 +164,9 @@ public class Calculator {
     		c = '*';
     	else if(c == '÷')
     		c = '/';
-    	else if(c == '（')
+    	else if(c == '（' || c == '[' || c == '{')
     		c = '(';
-    	else if(c == '）')
+    	else if(c == '）' || c == ']' || c == '}')
     		c = ')';
     	else if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
     		c = '~';
@@ -155,7 +177,7 @@ public class Calculator {
     	return c;
     }
     
-    private int isLongOperator(char c,int i,char[] arr) {
+    private int indexLongOperator(char c,int i,char[] arr) {
     	if(arr.length - i > 1 && arr[i+1] == 'n')//ln
 			i++;
     	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'd')//mod

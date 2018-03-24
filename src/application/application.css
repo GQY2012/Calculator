@@ -2,7 +2,7 @@
 
 .root{
 	-fx-font-family:  "consolas";
-	-fx-background-image:url(../../background.jpg) ;
+	-fx-background-image:url(../../image/background.jpg) ;
 	-fx-background-size:stretch ;
 	-fx-background-position:center ;
 }

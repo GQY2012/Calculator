@@ -70,7 +70,7 @@ class Acalculator {
     public static double mul(String v1, String v2) {  
         java.math.BigDecimal b1 = new java.math.BigDecimal(v1);  
         java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
-        return b1.multiply(b2).doubleValue();  
+        return b1.doubleValue()*b2.doubleValue();  
     }  
   
     /** 
@@ -259,6 +259,8 @@ class Acalculator {
     
     public static double ln(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v);       
+        if(b.doubleValue() < 0.0)
+        	throw new NumberFormatException("Illegal Expression!"); 
         return Math.log(b.doubleValue());  
     }
     
@@ -292,6 +294,9 @@ class Acalculator {
     
     public static double sin(String v) {  
     	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	if(b.doubleValue()%Math.PI == 0){
+    		return 0;
+    	}
     	return Math.sin(b.doubleValue());
     }
     
@@ -303,6 +308,9 @@ class Acalculator {
     
     public static double cos(String v) {  
     	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	if(b.doubleValue()/(Math.PI/2)%2 == 1){
+    		return 0;
+    	}
     	return Math.cos(b.doubleValue());
     }
     
@@ -314,6 +322,9 @@ class Acalculator {
     
     public static double tan(String v) {  
     	java.math.BigDecimal b = new java.math.BigDecimal(v);
+    	if(b.doubleValue()/(Math.PI/2)%2 == 1){
+    		throw new IllegalArgumentException("Illegal Expression!");
+    	}
     	return Math.tan(b.doubleValue());
     }
     

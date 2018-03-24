@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -19,9 +17,9 @@ public class Main extends Application {
                     .getResource("/application/Cal_Scene.fxml"));
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("Calculator 3.0");
-			primaryStage.getIcons().add(new Image("file:../../icon.jpg"));
+			primaryStage.getIcons().add(new Image("file:../../image/icon.jpg"));
 			Scene se = new Scene(root);
-			se.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			se.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             primaryStage.setScene(se);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -1,8 +1,7 @@
 package application;
 
-import java.util.ArrayList;
+import java.util.EmptyStackException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -165,7 +164,7 @@ public class CalController {
 	
 	
 	public void Clear() {
-		Display.setText(null);
+		Display.setText("");
 		Display.requestFocus();
 	//	input.expression = new StringBuffer("0");
 	}
@@ -173,9 +172,12 @@ public class CalController {
 		if(Display.getLength() > 0){
 			Display.deleteText(Display.getLength()-1, Display.getLength());
 		}
+		if(Display.getLength() == 0){
+			Display.requestFocus();
+		}
 	}
 	public void Esc() {
-		Display.setText(null);
+		Display.setText("");
 		Display.requestFocus();
 	//	saveExpression.clear();
 	//	index = 0;
@@ -305,19 +307,45 @@ public class CalController {
 	}
 	
 	
-	public void inputEqual() {
+	public void inputEqual() {//计算
 	//	Display.appendText(Calculator.conversion(input.expression.toString()));
 	//	System.out.println(Display.getText());
 		Calculator cal  = new Calculator();
 	//	saveExpression.add(Display.getText());
-		result = cal.calculate(Display.getText());
+		if(Display.getText().equals("")) {
+			Display.requestFocus();//显示光标
+			return;
+		}
+		else
+		{
+			try {
+			result = cal.calculate(Display.getText());
+			}catch(EmptyStackException e) {
+				Display.setText("Experssion Error!");
+				return;
+			}catch(ArithmeticException e) {
+				Display.setText("Divide by Zero Error!");
+				return;
+			}catch(NumberFormatException e) {
+				Display.setText(e.getMessage());
+				return;
+			}catch(IllegalArgumentException e) {
+				Display.setText(e.getMessage());
+				return;
+			}
+			finally {
+				Display.requestFocus();//显示光标
+				Display.positionCaret((Display.getLength()));//设置光标位置
+			}
+		}
 	//	System.out.println(result);
 		Display.setText(Double.toString(result));
-		Display.requestFocus();
-		Display.positionCaret((Display.getLength()));
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
+		
 	}
 	
-	public void keyPressed(KeyEvent event) {
+	public void keyPressed(KeyEvent event) {//键盘响应
 		if(event.getCode() == KeyCode.ENTER) {
 			inputEqual();
 		}
@@ -331,5 +359,9 @@ public class CalController {
 	
 	public void keyReleased(KeyEvent event) {
 		
+	}
+	
+	public  void display(String st) {
+		Display.setText(st);
 	}
 }
