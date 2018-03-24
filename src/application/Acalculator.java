@@ -158,6 +158,10 @@ class Acalculator {
     
     public static double factorial(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v); 
+        if(b.doubleValue()%1 != 0)
+        	throw new NumberFormatException("Illegal Expression!");
+        if(b.doubleValue() > 170.0)
+        	throw new NumberFormatException("OverFlow!");
         java.math.BigDecimal result = new java.math.BigDecimal(1);
         for(int i = 1;i <= b.intValue();i++)
         	result = result.multiply(new java.math.BigDecimal(i));

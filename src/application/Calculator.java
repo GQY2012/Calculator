@@ -61,21 +61,24 @@ public class Calculator {
             	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
             		continue;
             	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
-            		if(i == 0 && isRUnaryOperator(currentOp))
-        				throw new IllegalArgumentException("Experssion Error!");
+            		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符
+            			if(i > 0 && (arr[i-1] == ')' || Character.isDigit(arr[i-1])))
+            				throw new IllegalArgumentException("Experssion Error!");
+            		}
+            		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符
+            			if(i < arr.length - 1 && (arr[i+1] == '(' || Character.isDigit(arr[i+1])))
+            				throw new IllegalArgumentException("Experssion Error!");
+            		}
             		opStack.push(currentOp);
-            		i = indexLongOperator(currentOp,i,arr);
             	}
             	else {//符号栈不为空
             		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符则直接入运算符栈
-            			i = indexLongOperator(currentOp,i,arr);
-            			if((i == arr.length - 1 || arr[i+1] != '(' && !Character.isDigit(arr[i+1])))
+            			if(i > 0 && (arr[i-1] == ')' || Character.isDigit(arr[i-1])))
             				throw new IllegalArgumentException("Experssion Error!");
             			opStack.push(currentOp);
             		}
             		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符则直接如后缀式栈
-            			i = indexLongOperator(currentOp,i,arr);
-            			if((arr[i-1] != ')' && !Character.isDigit(arr[i-1])))
+            			if(i < arr.length - 1 && (arr[i+1] == '(' || Character.isDigit(arr[i+1])))
             				throw new IllegalArgumentException("Experssion Error!");
             			postfixStack.push(String.valueOf(currentOp));
             		}
@@ -123,6 +126,7 @@ public class Calculator {
         	else {
         		throw new IllegalArgumentException("Experssion Error!");
         	}
+        	i = indexLongOperator(currentOp,i,arr);//长运算符
         	
         }
       	while(!opStack.isEmpty()) {  //最后运算符栈剩余的符号全部入后缀式栈

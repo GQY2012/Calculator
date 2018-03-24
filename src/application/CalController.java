@@ -361,7 +361,4 @@ public class CalController {
 		
 	}
 	
-	public  void display(String st) {
-		Display.setText(st);
-	}
 }
