@@ -23,7 +23,7 @@
       </TextField>
       <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="26.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../image/GQY.JPG" />
+            <Image url="@../src/image/GQY.JPG" />
          </image>
       </ImageView>
       <Button fx:id="Button_Three" layoutX="330.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputThree" prefHeight="54.0" prefWidth="78.0" text="3">
