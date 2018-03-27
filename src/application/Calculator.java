@@ -98,24 +98,33 @@ public class Calculator {
             }
         	else if(Character.isDigit(currentOp)){//如果是数字
         		int count = 1;
+        //		int pointindex = 0;
         		while((arr.length - i > 1) && (Character.isDigit(arr[i+1]) ||arr[i+1] == '.')){
+        //			if(arr[i+1] == '.')
+        //				pointindex = i+1;
         			count++;
         			i++;
         			}
         		if((arr.length - i > 1) && arr[i+1] == 'E') {//如果是科学记数法
-        			StringBuffer stringnum =  new StringBuffer(new String(arr,i-count+1,count)).deleteCharAt(1);
+        //			StringBuffer stringnum =  new StringBuffer(new String(arr,i-count+1,count));
+        //			int len = stringnum.length();//小数位长度
+        //			if(pointindex > 0) {
+        //				len = len - pointindex;
+        //				stringnum.deleteCharAt(pointindex);
+        //			}
+        			java.math.BigDecimal num = new java.math.BigDecimal(new String(arr,i-count+1,count));
         			count = 0;
         			i++;
-        			while((arr.length - i > 1) && (Character.isDigit(arr[i+1]))){
+        			while((arr.length - i > 1) && (Character.isDigit(arr[i+1]) || arr[i+1] == '.')){
             			count++;
             			i++;
             			}
-        			int power = Integer.valueOf(new String(arr,i-count+1,count));
-        			int len = stringnum.length();
-        			for(int j = 0;j < power - len + 1;j++) {
-        				stringnum.append("0");
-        			}
-        			postfixStack.push(stringnum.toString());
+        			java.math.BigDecimal power = new java.math.BigDecimal(new String(arr,i-count+1,count));
+        	//		for(int j = 0;j < power - len + 1;j++) {
+        	//			stringnum.append("0");
+        	//		}	
+        			postfixStack.push(String.valueOf(num.
+        					multiply(new java.math.BigDecimal(Math.pow(10, power.doubleValue())))));
         		}
         		else
         			postfixStack.push(new String(arr,i-count+1,count));

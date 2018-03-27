@@ -103,7 +103,7 @@ public class CalController {
 	@FXML
 	private Button Button_Pi;
 	@FXML
-	private Button Button_E;
+	private Button Button_Ee;
 	@FXML
 	private Button Button_Pow;
 	@FXML
@@ -114,8 +114,10 @@ public class CalController {
 	private Button Button_Cos;
 	@FXML
 	private Button Button_Tan;
+//	@FXML
+//	private Button Button_Deg;
 	@FXML
-	private Button Button_Deg;
+	private Button Button_E;
 	
 	/*display*/
 	@FXML
@@ -309,12 +311,17 @@ public class CalController {
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
+	public void inputE() {
+		Display.appendText("E");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
+	}
 	public void inputPi() {
 		Display.appendText("π");
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
-	public void inputE() {
+	public void inputEe() {
 		Display.appendText("e");
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
@@ -324,11 +331,11 @@ public class CalController {
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
-	public void inputDeg() {
+/*	public void inputDeg() {
 		Display.appendText("deg");
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
-	}
+	}*/
 	public void inputPow() {
 		Display.appendText("^");
 		Display.requestFocus();//显示光标
