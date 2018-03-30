@@ -1,12 +1,16 @@
 package application;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.EmptyStackException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 
 public class CalController {
@@ -14,7 +18,7 @@ public class CalController {
 //	public static ArrayList<String> saveExpression = new ArrayList<String>();//保存的所有历史表达式
     public static StringBuffer currentExpression = new StringBuffer("");//当前表达式
 //	public static int index = 0;
-    public static double result = 0;
+    public static String result = "";
 	
 	
 	
@@ -118,49 +122,62 @@ public class CalController {
 	/*display*/
 	@FXML
 	private TextField Display;
-
+	
+	/*link*/
+	@FXML
+	private Hyperlink Help;
 	
 	
 	
 	public void inputZero() {
 		Display.appendText("0");
-	//	input.expression.append("0");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputOne() {
 		Display.appendText("1");
-	//	input.expression.append("1");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置；
 	}
 	public void inputTwo() {
 		Display.appendText("2");
-	//	input.expression.append("2");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置;
 	}
 	public void inputThree() {
 		Display.appendText("3");
-	//	input.expression.append("3");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputFour() {
 		Display.appendText("4");
-	//	input.expression.append("4");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputFive() {
 		Display.appendText("5");
-	//	input.expression.append("5");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSix() {
 		Display.appendText("6");
-	//	input.expression.append("6");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSeven() {
 		Display.appendText("7");
-	//	input.expression.append("7");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputEight() {
 		Display.appendText("8");
-	//	input.expression.append("8");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputNine() {
 		Display.appendText("9");
-	//	input.expression.append("9");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	
 	
@@ -168,7 +185,6 @@ public class CalController {
 	public void Clear() {
 		Display.setText("");
 		Display.requestFocus();
-	//	input.expression = new StringBuffer("0");
 	}
 	public void Delete() {
 		if(Display.getLength() > 0){
@@ -183,7 +199,7 @@ public class CalController {
 		Display.requestFocus();
 	//	saveExpression.clear();
 	//	index = 0;
-		result = 0;
+		result = "";
 	}
 	/*
 	public void MC() {
@@ -202,6 +218,8 @@ public class CalController {
 	}*/
 	public void inputAns() {
 		Display.appendText("Ans");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	
 	
@@ -209,67 +227,89 @@ public class CalController {
 	
 	public void inputAdd() {
 		Display.appendText("+");
-	//	input.expression.append("+");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSub() {
 		Display.appendText("-");
-	//	input.expression.append("-");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputMul() {
 		Display.appendText("×");
-	//	input.expression.append("*");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputDiv() {
 		Display.appendText("÷");
-	//	input.expression.append("÷");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputFraction() {
 		Display.appendText("/");
-	//	input.expression.append("/");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputMod() {
 		Display.appendText("mod");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 /*	public void inputNeq() {
 		Display.appendText("-");
-	//	input.expression.append("-");
+		input.expression.append("-");
+	  	Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}*/
 	public void inputAnd() {
 		Display.appendText("&");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputOr() {
 		Display.appendText("|");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputXor() {
 		Display.appendText("Xor");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputPoint() {
 		Display.appendText(".");
-	//	input.expression.append(".");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputPercent() {
 		Display.appendText("%");
-	//	input.expression.append("%");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSqrt() {
 		Display.appendText("√");
-	//	input.expression.append("√");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSquare() {
 		Display.appendText("²");
-	//	input.expression.append("²");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputLP() {
 		Display.appendText("(");
-	//	input.expression.append("(");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputRP() {
 		Display.appendText(")");
-	//	input.expression.append(")");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputLn() {
 		Display.appendText("ln");
-	//	input.expression.append("ln");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputE() {
 		Display.appendText("E");
@@ -278,45 +318,48 @@ public class CalController {
 	}
 	public void inputPi() {
 		Display.appendText("π");
-	//	input.expression.append("π");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputEe() {
 		Display.appendText("e");
-	//	input.expression.append("e");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputFactorial() {
 		Display.appendText("!");
-	//	input.expression.append("!");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 /*	public void inputDeg() {
 		Display.appendText("deg");
-<<<<<<< HEAD
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
 	}*/
-=======
-	//	input.expression.append("deg");
-	}
->>>>>>> parent of 0da4dea... 4.2 released!
 	public void inputPow() {
 		Display.appendText("^");
-	//	input.expression.append("^");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputRooting() {
 		Display.appendText("√");
-	//	input.expression.append("√");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputSin() {
 		Display.appendText("sin");
-	//	input.expression.append("sin");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputCos() {
 		Display.appendText("cos");
-	//	input.expression.append("cos");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	public void inputTan() {
 		Display.appendText("tan");
-	//	input.expression.append("tan");
+		Display.requestFocus();//显示光标
+		Display.positionCaret((Display.getLength()));//设置光标位置
 	}
 	
 	
@@ -329,20 +372,25 @@ public class CalController {
 			Display.requestFocus();//显示光标
 			return;
 		}
+		else if(Display.getText().equals(result)) {
+			Display.requestFocus();//显示光标
+			Display.positionCaret((Display.getLength()));//设置光标位置
+			return;
+		}
 		else
 		{
 			try {
 			result = cal.calculate(Display.getText());
-			}catch(EmptyStackException e) {
+			}catch(EmptyStackException e) {//表达式格式错误
 				Display.setText("Experssion Error!");
 				return;
-			}catch(ArithmeticException e) {
+			}catch(ArithmeticException e) {//除0错误
 				Display.setText("Divide by Zero Error!");
 				return;
-			}catch(NumberFormatException e) {
+			}catch(NumberFormatException e) {//溢出错误
 				Display.setText(e.getMessage());
 				return;
-			}catch(IllegalArgumentException e) {
+			}catch(IllegalArgumentException e) {//非法表达式
 				Display.setText(e.getMessage());
 				return;
 			}
@@ -351,8 +399,13 @@ public class CalController {
 				Display.positionCaret((Display.getLength()));//设置光标位置
 			}
 		}
-	//	System.out.println(result);
-		Display.setText(Double.toString(result));
+		DecimalFormat ft = new DecimalFormat("0.#################");//最多17位小数
+		ft.setRoundingMode(RoundingMode.HALF_UP);//四舍五入
+		if(result.length() <= 17) {
+			Display.setText(ft.format(Double.valueOf(result)));
+		}
+		else
+			Display.setText(result);//科学记数法
 		Display.requestFocus();//显示光标
 		Display.positionCaret((Display.getLength()));//设置光标位置
 		
@@ -368,10 +421,23 @@ public class CalController {
 		else if(event.getCode() == KeyCode.DELETE) {
 			Delete();
 		}
+		else if(event.getCode() == KeyCode.F5) {
+			Clear();
+		}
 	}
 	
-	public void keyReleased(KeyEvent event) {
-		
-	}
-	
+	@SuppressWarnings("unused")
+	public void clickHelp(MouseEvent event) {
+		final Runtime runtime = Runtime.getRuntime();    
+	    Process process = null;   
+	    
+	    String cmd = "rundll32 url.dll FileProtocolHandler " + System.getProperty("user.dir") + "/readme/help.txt"; 
+	    try {    
+	        process = runtime.exec(cmd);    
+	    } catch (final Exception e) {    
+	        System.out.println("Error exec!");    
+	    }    
+	}    
 }
+
+
