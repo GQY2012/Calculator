@@ -16,7 +16,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass()
                     .getResource("/application/Cal_Scene.fxml"));
 			primaryStage.setResizable(false);
-			primaryStage.setTitle("Calculator 4.3");
+			primaryStage.setTitle("Calculator 4.2");
 			primaryStage.getIcons().add(new Image("file:../../image/icon.jpg"));
 			Scene se = new Scene(root);
 			se.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());

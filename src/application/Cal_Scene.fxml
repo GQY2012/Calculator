@@ -36,7 +36,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Point" layoutX="330.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputPoint" prefHeight="54.0" prefWidth="78.0" text="·">
+      <Button fx:id="Button_Point" layoutX="330.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputPoint" prefHeight="54.0" prefWidth="78.0" text=".">
          <font>
             <Font size="26.0" />
          </font>
@@ -56,12 +56,12 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_E" layoutX="226.0" layoutY="293.0" mnemonicParsing="false" onAction="#inputE" prefHeight="54.0" prefWidth="78.0" text="E">
+      <Button fx:id="Button_Deg" layoutX="26.0" layoutY="360.0" mnemonicParsing="false" onAction="#inputDeg" prefHeight="54.0" prefWidth="78.0" text="deg">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Add" layoutX="433.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputAdd" prefHeight="54.0" prefWidth="78.0" text="＋">
+      <Button fx:id="Button_Add" layoutX="433.0" layoutY="554.0" mnemonicParsing="false" onAction="#inputAdd" prefHeight="54.0" prefWidth="78.0" text="+">
          <font>
             <Font size="26.0" />
          </font>
@@ -81,7 +81,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Sub" layoutX="433.0" layoutY="489.0" mnemonicParsing="false" onAction="#inputSub" prefHeight="54.0" prefWidth="78.0" text="－">
+      <Button fx:id="Button_Sub" layoutX="433.0" layoutY="489.0" mnemonicParsing="false" onAction="#inputSub" prefHeight="54.0" prefWidth="78.0" text="-">
          <font>
             <Font size="26.0" />
          </font>
@@ -126,7 +126,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_ln" layoutX="26.0" layoutY="360.0" mnemonicParsing="false" onAction="#inputLn" prefHeight="54.0" prefWidth="78.0" text="ln">
+      <Button fx:id="Button_ln" layoutX="224.0" layoutY="293.0" mnemonicParsing="false" onAction="#inputLn" prefHeight="54.0" prefWidth="78.0" text="ln">
          <font>
             <Font size="26.0" />
          </font>
@@ -148,15 +148,15 @@
       </Button>
       <Button fx:id="Button_Xor" layoutX="26.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputXor" prefHeight="54.0" prefWidth="78.0" text="Xor" wrapText="true">
          <font>
-            <Font size="22.0" />
+            <Font size="23.0" />
          </font>
       </Button>
-      <Button fx:id="Button_And" layoutX="125.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputAnd" prefHeight="54.0" prefWidth="78.0" text="&amp;" wrapText="true">
+      <Button fx:id="Button_And" layoutX="123.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputAnd" prefHeight="54.0" prefWidth="78.0" text="&amp;" wrapText="true">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Or" layoutX="226.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputOr" prefHeight="54.0" prefWidth="78.0" text="|" wrapText="true">
+      <Button fx:id="Button_Or" layoutX="224.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputOr" prefHeight="54.0" prefWidth="78.0" text="|" wrapText="true">
          <font>
             <Font size="22.0" />
          </font>
@@ -186,7 +186,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Ee" layoutX="26.0" layoutY="425.0" mnemonicParsing="false" onAction="#inputEe" prefHeight="54.0" prefWidth="78.0" text="e">
+      <Button fx:id="Button_E" layoutX="26.0" layoutY="425.0" mnemonicParsing="false" onAction="#inputE" prefHeight="54.0" prefWidth="78.0" text="e">
          <font>
             <Font size="26.0" />
          </font>
@@ -203,15 +203,15 @@
       </Button>
       <Button fx:id="Button_Rooting" layoutX="26.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputRooting" prefHeight="54.0" prefWidth="78.0" text="x√y">
          <font>
-            <Font size="22.0" />
+            <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Pow" layoutX="125.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputPow" prefHeight="54.0" prefWidth="78.0" text="^">
+      <Button fx:id="Button_Pow" layoutX="123.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputPow" prefHeight="54.0" prefWidth="78.0" text="^">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Sin" layoutX="226.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputSin" prefHeight="54.0" prefWidth="78.0" text="sin">
+      <Button fx:id="Button_Sin" layoutX="224.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputSin" prefHeight="54.0" prefWidth="78.0" text="sin">
          <font>
             <Font size="24.0" />
          </font>
