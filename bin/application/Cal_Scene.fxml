@@ -36,7 +36,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Point" layoutX="330.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputPoint" prefHeight="54.0" prefWidth="78.0" text=".">
+      <Button fx:id="Button_Point" layoutX="330.0" layoutY="619.0" mnemonicParsing="false" onAction="#inputPoint" prefHeight="54.0" prefWidth="78.0" text="·">
          <font>
             <Font size="26.0" />
          </font>
@@ -81,7 +81,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="Button_Sub" layoutX="433.0" layoutY="489.0" mnemonicParsing="false" onAction="#inputSub" prefHeight="54.0" prefWidth="78.0" text="-">
+      <Button fx:id="Button_Sub" layoutX="433.0" layoutY="489.0" mnemonicParsing="false" onAction="#inputSub" prefHeight="54.0" prefWidth="78.0" text="－">
          <font>
             <Font size="26.0" />
          </font>
@@ -148,7 +148,7 @@
       </Button>
       <Button fx:id="Button_Xor" layoutX="26.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputXor" prefHeight="54.0" prefWidth="78.0" text="Xor" wrapText="true">
          <font>
-            <Font size="23.0" />
+            <Font size="22.0" />
          </font>
       </Button>
       <Button fx:id="Button_And" layoutX="123.0" layoutY="160.0" mnemonicParsing="false" onAction="#inputAnd" prefHeight="54.0" prefWidth="78.0" text="&amp;" wrapText="true">
@@ -203,7 +203,7 @@
       </Button>
       <Button fx:id="Button_Rooting" layoutX="26.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputRooting" prefHeight="54.0" prefWidth="78.0" text="x√y">
          <font>
-            <Font size="24.0" />
+            <Font size="22.0" />
          </font>
       </Button>
       <Button fx:id="Button_Pow" layoutX="123.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputPow" prefHeight="54.0" prefWidth="78.0" text="^">
@@ -218,15 +218,15 @@
       </Button>
       <Button fx:id="Button_Cos" layoutX="328.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputCos" prefHeight="54.0" prefWidth="78.0" text="cos">
          <font>
-            <Font size="24.0" />
+            <Font size="22.0" />
          </font>
       </Button>
       <Button fx:id="Button_Tan" layoutX="433.0" layoutY="227.0" mnemonicParsing="false" onAction="#inputTan" prefHeight="54.0" prefWidth="78.0" text="tan">
          <font>
-            <Font size="24.0" />
+            <Font size="22.0" />
          </font>
       </Button>
-      <Hyperlink fx:id="Help" layoutX="467.0" layoutY="32.0" onMouseClicked="#clickHelp" text="Help">
+      <Hyperlink fx:id="Help" layoutX="467.0" layoutY="32.0" onMouseClicked="#clickHelp" text="Help" textFill="#3482bf">
          <font>
             <Font size="14.0" />
          </font></Hyperlink>

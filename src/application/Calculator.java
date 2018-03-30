@@ -23,16 +23,16 @@ public class Calculator {
         String firstValue  ,secondValue,currentValue;//参与计算的第一个值，第二个值和算术运算符  
         while(!postfixStack.isEmpty()) {  
             currentValue  = postfixStack.pop();  
-            if(!isOperator(currentValue.charAt(0))) {//如果不是运算符则存入操作数栈中  
+            if(!OperatorPrepare.isOperator(currentValue.charAt(0))) {//如果不是运算符则存入操作数栈中  
                 resultStack.push(currentValue);  
             } 
-            else if(isBinaryOperator(currentValue.charAt(0))){//如果是双目运算符则从操作数栈中取两个值和该运算符一起参与运算  
+            else if(OperatorPrepare.isBinaryOperator(currentValue.charAt(0))){//如果是双目运算符则从操作数栈中取两个值和该运算符一起参与运算  
             	secondValue  = resultStack.pop();  
             	firstValue  = resultStack.pop();  
             	String tempResult  = calculate(firstValue, secondValue, currentValue.charAt(0));  
             	resultStack.push(tempResult);  
             } 
-            else if(isUnaryOperator(currentValue.charAt(0))) {//如果是单目运算符则从操作数栈中取一个值和该运算符一起参与运算  
+            else if(OperatorPrepare.isUnaryOperator(currentValue.charAt(0))) {//如果是单目运算符则从操作数栈中取一个值和该运算符一起参与运算  
             	firstValue  = resultStack.pop();
             	String tempResult  = calculate(firstValue, currentValue.charAt(0)); 
             	resultStack.push(tempResult);
@@ -55,40 +55,40 @@ public class Calculator {
         char[] arr  = expression.toCharArray();     
         char currentOp;//当前操作符  
         for(int i = 0;i < arr.length;i++) { 
-        	currentOp = shiftOperator(arr[i],i,arr); 
-        	if(isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
-            //	i = indexLongOperator(currentOp,i,arr);
+        	currentOp = OperatorPrepare.shiftOperator(arr[i],i,arr); 
+        	if(OperatorPrepare.isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
+            //	i = OperatorPrepare.indexLongOperator(currentOp,i,arr);
             	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
             		continue;
             	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
-            		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符
+            		if(OperatorPrepare.isLUnaryOperator(currentOp)) {//如果是左单目运算符
             			if(i > 0 && (arr[i-1] == ')' || Character.isDigit(arr[i-1])))
             				throw new IllegalArgumentException("Experssion Error!");
             		}
-            		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符
+            		else if(OperatorPrepare.isRUnaryOperator(currentOp)){//如果是右单目运算符
             			if(i < arr.length - 1 && (arr[i+1] == '(' || Character.isDigit(arr[i+1])))
             				throw new IllegalArgumentException("Experssion Error!");
             		}
             		opStack.push(currentOp);
             	}
             	else {//符号栈不为空
-            		if(isLUnaryOperator(currentOp)) {//如果是左单目运算符则直接入运算符栈
+            		if(OperatorPrepare.isLUnaryOperator(currentOp)) {//如果是左单目运算符则直接入运算符栈
             			if(i > 0 && (arr[i-1] == ')' || Character.isDigit(arr[i-1])))
             				throw new IllegalArgumentException("Experssion Error!");
             			opStack.push(currentOp);
             		}
-            		else if(isRUnaryOperator(currentOp)){//如果是右单目运算符则直接如后缀式栈
+            		else if(OperatorPrepare.isRUnaryOperator(currentOp)){//如果是右单目运算符则直接如后缀式栈
             			if(i < arr.length - 1 && (arr[i+1] == '(' || Character.isDigit(arr[i+1])))
             				throw new IllegalArgumentException("Experssion Error!");
             			postfixStack.push(String.valueOf(currentOp));
             		}
             		else {//如果是双目运算符
-            			i = indexLongOperator(currentOp,i,arr);
-	            		if(getoperatPriority(currentOp) > getoperatPriority(opStack.peek())) {//当前运算符优先级大于栈顶运算符优先级
+            	//		i = OperatorPrepare.indexLongOperator(currentOp,i,arr);
+	            		if(OperatorPrepare.getoperatPriority(currentOp) > OperatorPrepare.getoperatPriority(opStack.peek())) {//当前运算符优先级大于栈顶运算符优先级
 	            		opStack.push(currentOp);
 	            		}
 	            		else {//当前运算符优先级大于栈顶运算符优先级
-	            			while(!opStack.isEmpty() && getoperatPriority(currentOp) <= getoperatPriority(opStack.peek()))  {  
+	            			while(!opStack.isEmpty() && OperatorPrepare.getoperatPriority(currentOp) <= OperatorPrepare.getoperatPriority(opStack.peek()))  {  
 	                            postfixStack.push(String.valueOf(opStack.pop()));    
 	                        }  
 	            			opStack.push(currentOp);
@@ -142,128 +142,31 @@ public class Calculator {
         	else {
         		throw new IllegalArgumentException("Experssion Error!");
         	}
-        	i = indexLongOperator(currentOp,i,arr);//长运算符
-        	
+        	if(OperatorPrepare.isLongOperator(currentOp)) {
+        		if(arr.length - i > 2){
+        			StringBuffer LongOp =new StringBuffer();
+        			LongOp.append(arr[i]).append(arr[i+1]).append(arr[i+2]);
+        			if(OperatorPrepare.isLongStringOperator(LongOp.toString())) {
+        				i += 2;	
+        			}
+        			else
+        				throw new NumberFormatException("Illegal Expression!"); 
+        		}
+        		else if(arr.length - i > 1) {
+        			StringBuffer LongOp =new StringBuffer(arr[i] + arr[i+1] + arr[i+2]);
+        			if(OperatorPrepare.isLongStringOperator(LongOp.toString())) {
+        				i++;	
+        			}
+        			else
+        				throw new NumberFormatException("Illegal Expression!"); 
+        		}
+        	}
         }
       	while(!opStack.isEmpty()) {  //最后运算符栈剩余的符号全部入后缀式栈
                 postfixStack.push(String.valueOf(opStack.pop()));  
             } 
      }
     
-    /** 
-     * 判断算术符号 
-     * @param c 
-     * @return 
-     */
-    
-    private boolean isOperator(char c) {  //判断运算符
-        return isBinaryOperator(c)|| isUnaryOperator(c);  
-    } 
-     
-    private boolean isBinaryOperator(char c) {  //判断双目运算符
-        return c == '+' || c == '-' || c == '*' || c == '/' 
-        		|| c == '(' || c == ')' || c == 'm' || c == '^' || c == 'r'
-        		|| c == '&' || c == '|' || c == 'X';  
-    } 
-    
-    private boolean isUnaryOperator(char c) { //判断单目运算符 
-        return isLUnaryOperator(c) || isRUnaryOperator(c);  
-    }
-    
-    private boolean isLUnaryOperator(char c) {  //判断左单目运算符
-        return c == '√' || c == 'l' || c == '~' || c == '#'
-        		|| c == 's' || c == 'c' || c == 't' || c == 'd';  
-    }
-    
-    private boolean isRUnaryOperator(char c) {  //判断右单目运算符
-        return c == '!' || c == '²' || c == '%';  
-    }
-    
-    private char shiftOperator(char c,int i,char[] arr) { //部分运算符转换
-    	if(c == 'x' || c == '×')
-    		c = '*';
-    	else if(c == '÷')
-    		c = '/';
-    	else if(c == '（' || c == '[' || c == '{')
-    		c = '(';
-    	else if(c == '）' || c == ']' || c == '}')
-    		c = ')';
-    	else if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
-    		c = '~';
-    	}
-    	else if( i > 0 && arr[i] == '√' && Character.isDigit(arr[i-1])) {
-    		c = 'r';
-    	}
-    	return c;
-    }
-    
-    private int indexLongOperator(char c,int i,char[] arr) {
-    	if(arr.length - i > 1 && arr[i+1] == 'n')//ln
-			i++;
-    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'd')//mod
-			i += 2;
-    	else if((arr.length - i > 2) && arr[i+1] == 'i' && arr[i+2] == 'n')//sin
-    		i += 2;
-    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 's')//cos
-    		i += 2;
-    	else if((arr.length - i > 2) && arr[i+1] == 'a' && arr[i+2] == 'n')//tan
-    		i += 2;
-    	else if((arr.length - i > 2) && arr[i+1] == 'e' && arr[i+2] == 'g')//deg
-    		i += 2;
-    	else if((arr.length - i > 2) && arr[i+1] == 'o' && arr[i+2] == 'r')//deg
-    		i += 2;
-    	return i;
-    }
-    
-    /**
-     * 优先级
-     * @param c 运算符
-     * @return 优先级
-     */
-    
-    private int getoperatPriority(char c) {
-    	switch(c) {
-    	case '(':return 0;
-    	
-    	case '|':return 1;
-    	
-    	case 'x':return 2;
-    	
-    	case '&':return 3;
-    	
-    	case '+':
-    	case '-':return 4;
-    	
-    	case '*':
-    	case '/':
-    	case 'm'://mod
-    			return 5;
-    	
-    	case '~'://negative
-    	case '#'://positive
-    	case '²':
-    	case '^':
-    	case '√':
-    	case 'r'://rooting
-    			return 6;
-    	
-    	case 'l'://ln
-    	case 's'://sin
-    	case 'c'://cos
-    	case 't'://tan
-    	case '%':
-    	case '!':
-    			return 7;
-    	
-    	case 'd'://deg
-    			return 8;
-    	
-    	case ')':
-    			return 9;
-    	}
-    	return -1;
-    	
-    }
  
     /** 
      * 按照给定的双目算术运算符做计算 
