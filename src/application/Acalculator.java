@@ -2,13 +2,13 @@ package application;
 
 
 
-class CalculatorHelper {  
+class Acalculator {  
 	  
     // 默认除法运算精度  
     private static final int DEF_DIV_SCALE = 16;  
   
     // 这个类不能实例化  
-    private CalculatorHelper() {  
+    private Acalculator() {  
     }  
   
     /** 
@@ -70,7 +70,7 @@ class CalculatorHelper {
     public static double mul(String v1, String v2) {  
         java.math.BigDecimal b1 = new java.math.BigDecimal(v1);  
         java.math.BigDecimal b2 = new java.math.BigDecimal(v2);  
-        return b1.multiply(b2).doubleValue();   
+        return b1.doubleValue()*b2.doubleValue();  
     }  
   
     /** 
@@ -159,9 +159,9 @@ class CalculatorHelper {
     public static double factorial(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v); 
         if(b.doubleValue()%1 != 0)
-        	throw new NumberFormatException("∞");
+        	throw new NumberFormatException("Illegal Expression!");
         if(b.doubleValue() > 170.0)
-        	throw new NumberFormatException("∞");
+        	throw new NumberFormatException("OverFlow!");
         java.math.BigDecimal result = new java.math.BigDecimal(1);
         for(int i = 1;i <= b.intValue();i++)
         	result = result.multiply(new java.math.BigDecimal(i));

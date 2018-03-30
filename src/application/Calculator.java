@@ -15,7 +15,7 @@ public class Calculator {
      * @param expression 要计算的表达式例如:5！+12*(-3+5)/7 
      * @return 
      */  
-    public String calculate(String expression) {  
+    public double calculate(String expression) {  
         Stack<String> resultStack  = new Stack<String>();
    //   prepare(prepareNeq(expression));
         prepare(expression);  
@@ -43,7 +43,7 @@ public class Calculator {
         }
         if(resultStack.size() > 1)
         	throw new IllegalArgumentException("Experssion Error!");
-        return resultStack.pop();  
+        return Double.valueOf(resultStack.pop());  
     }  
       
     /** 
@@ -105,6 +105,7 @@ public class Calculator {
         			count++;
         			i++;
         			}
+<<<<<<< HEAD
         		if((arr.length - i > 1) && arr[i+1] == 'E') {//如果是科学记数法
         //			StringBuffer stringnum =  new StringBuffer(new String(arr,i-count+1,count));
         //			int len = stringnum.length();//小数位长度
@@ -128,6 +129,9 @@ public class Calculator {
         		}
         		else
         			postfixStack.push(new String(arr,i-count+1,count));
+=======
+        		postfixStack.push(new String(arr,i-count+1,count));
+>>>>>>> parent of 0da4dea... 4.2 released!
         	}
         	else if(currentOp == 'π') {//如果是π
         		postfixStack.push(String.valueOf(Math.PI));
@@ -285,34 +289,34 @@ public class Calculator {
         String result  = "";  
         switch(currentOp) {  
             case '+':  
-                result = String.valueOf(CalculatorHelper.add(firstValue, secondValue));  
+                result = String.valueOf(Acalculator.add(firstValue, secondValue));  
                 break;  
             case '-':  
-                result = String.valueOf(CalculatorHelper.sub(firstValue, secondValue));  
+                result = String.valueOf(Acalculator.sub(firstValue, secondValue));  
                 break;  
             case '*':  
-                result = String.valueOf(CalculatorHelper.mul(firstValue, secondValue));  
+                result = String.valueOf(Acalculator.mul(firstValue, secondValue));  
                 break;  
             case '/':  
-                result = String.valueOf(CalculatorHelper.div(firstValue, secondValue));  
+                result = String.valueOf(Acalculator.div(firstValue, secondValue));  
                 break; 
             case 'm':
-            	result = String.valueOf(CalculatorHelper.mod(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.mod(firstValue, secondValue));  
                 break; 
             case '^':
-            	result = String.valueOf(CalculatorHelper.pow(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.pow(firstValue, secondValue));  
                 break; 
             case 'r':
-            	result = String.valueOf(CalculatorHelper.rooting(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.rooting(firstValue, secondValue));  
                 break;
             case '&':
-            	result = String.valueOf(CalculatorHelper.and(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.and(firstValue, secondValue));  
                 break; 
             case '|':
-            	result = String.valueOf(CalculatorHelper.or(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.or(firstValue, secondValue));  
                 break;
             case 'X':
-            	result = String.valueOf(CalculatorHelper.xor(firstValue, secondValue));  
+            	result = String.valueOf(Acalculator.xor(firstValue, secondValue));  
                 break;
         }  
         return result;  
@@ -329,34 +333,34 @@ public class Calculator {
 		String result  = "";  
 		switch(currentOp) { 
 			case'!':
-				result = String.valueOf(CalculatorHelper.factorial(Value));  
+				result = String.valueOf(Acalculator.factorial(Value));  
 				break;
 			case '²':
-				result = String.valueOf(CalculatorHelper.square(Value));  
+				result = String.valueOf(Acalculator.square(Value));  
 				break;
 	    	case '√':
-	    		result = String.valueOf(CalculatorHelper.sqrt(Value));  
+	    		result = String.valueOf(Acalculator.sqrt(Value));  
 				break;
 	    	case 'l':
-	    		result = String.valueOf(CalculatorHelper.ln(Value));  
+	    		result = String.valueOf(Acalculator.ln(Value));  
 				break;
 	    	case '%':
-	    		result = String.valueOf(CalculatorHelper.percent(Value));  
+	    		result = String.valueOf(Acalculator.percent(Value));  
 				break;	
 	    	case '~':
-	    		result = String.valueOf(CalculatorHelper.neq(Value));  
+	    		result = String.valueOf(Acalculator.neq(Value));  
 				break;
 	    	case 's':
-	    		result = String.valueOf(CalculatorHelper.sin(Value));  
+	    		result = String.valueOf(Acalculator.sin(Value));  
 				break;
 	    	case 'c':
-	    		result = String.valueOf(CalculatorHelper.cos(Value));  
+	    		result = String.valueOf(Acalculator.cos(Value));  
 				break;
 	    	case 't':
-	    		result = String.valueOf(CalculatorHelper.tan(Value));  
+	    		result = String.valueOf(Acalculator.tan(Value));  
 				break;
 	    	case 'd':
-	    		result = String.valueOf(CalculatorHelper.deg(Value));  
+	    		result = String.valueOf(Acalculator.deg(Value));  
 				break;
 		}
 		return result;
