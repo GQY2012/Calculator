@@ -56,7 +56,7 @@ public abstract class OperatorPrepare {
     	else if(i == 0 && arr[i] == '-'|| i > 0 && arr[i] == '-' && !Character.isDigit(arr[i-1])){//~
     		c = '~';
     	}
-    	else if( i > 0 && arr[i] == '√' && Character.isDigit(arr[i-1])) {
+    	else if( i > 0 && arr[i] == '√' && (Character.isDigit(arr[i-1]) || arr[i-1] == ')')) {
     		c = 'r';
     	}
     	return c;
@@ -94,7 +94,7 @@ public abstract class OperatorPrepare {
     	
     	case '|':return 1;
     	
-    	case 'x':return 2;
+    	case 'X':return 2;
     	
     	case '&':return 3;
     	

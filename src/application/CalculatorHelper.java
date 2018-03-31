@@ -188,7 +188,9 @@ class CalculatorHelper {
     
     public static double pow(String v1,String v2) {
     	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);  
-        java.math.BigDecimal b2 = new java.math.BigDecimal(v2);       
+        java.math.BigDecimal b2 = new java.math.BigDecimal(v2); 
+        if(b2.doubleValue() == 0.0)
+    		throw new IllegalArgumentException("Illegal Expression!");
         return Math.pow(b1.doubleValue(), b2.doubleValue()); 
     }
     
@@ -200,7 +202,11 @@ class CalculatorHelper {
     
     public static double sqrt(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v);       
-        return Math.sqrt(b.doubleValue());  
+        Double result =  Math.sqrt(b.doubleValue());
+        if(result.isNaN()){
+        	throw new IllegalArgumentException("Illegal Expression!");
+        }
+        return result;
     }
     
     /**
@@ -213,7 +219,12 @@ class CalculatorHelper {
     public static double rooting(String v1,String v2) { 
     	java.math.BigDecimal b1 = new java.math.BigDecimal(v1);
         java.math.BigDecimal b2 = new java.math.BigDecimal(v2);    
-        return Math.pow(b2.doubleValue(),1.0/b1.doubleValue());
+        Double result =  Math.pow(b2.doubleValue(),1.0/b1.doubleValue());
+        if(result.isNaN()){
+        	throw new IllegalArgumentException("Illegal Expression!");
+        }
+        return result;
+        	
     }
     
     /**
@@ -263,7 +274,7 @@ class CalculatorHelper {
     
     public static double ln(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v);       
-        if(b.doubleValue() < 0.0)
+        if(b.doubleValue() <= 0.0)
         	throw new NumberFormatException("Illegal Expression!"); 
         return Math.log(b.doubleValue());  
     }
@@ -323,7 +334,6 @@ class CalculatorHelper {
      * @param v
      * @return
      */
-    
     public static double tan(String v) {  
     	java.math.BigDecimal b = new java.math.BigDecimal(v);
     	if(b.doubleValue()/(Math.PI/2)%2 == 1){

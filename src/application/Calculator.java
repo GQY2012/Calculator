@@ -58,8 +58,8 @@ public class Calculator {
         	currentOp = OperatorPrepare.shiftOperator(arr[i],i,arr); 
         	if(OperatorPrepare.isOperator(currentOp) && (currentOp != '(') && (currentOp != ')')) {//如果当前字符是运算符  
             //	i = OperatorPrepare.indexLongOperator(currentOp,i,arr);
-            	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && !Character.isDigit(arr[i-1]))//#
-            		continue;
+            //	if(i == 0 && arr[i] == '+'|| i > 0 && arr[i] == '+' && (!Character.isDigit(arr[i-1]) && arr[i-1] != ')'))//#
+            //		continue;
             	if(opStack.isEmpty()) {//符号栈为空则当前运算符入栈
             		if(OperatorPrepare.isLUnaryOperator(currentOp)) {//如果是左单目运算符
             			if(i > 0 && (arr[i-1] == ')' || Character.isDigit(arr[i-1])))
@@ -142,26 +142,28 @@ public class Calculator {
         	else {
         		throw new IllegalArgumentException("Experssion Error!");
         	}
+        	
+        	
         	if(OperatorPrepare.isLongOperator(currentOp)) {
-        		if(arr.length - i > 2){
+        		if(arr.length - i > 1 && currentOp == 'l'){
+        			if(arr[i+1] == 'n')
+        				i += 1;	
+        			else
+        				throw new IllegalArgumentException("Experssion Error!"); 
+        		}
+        		else if(arr.length - i > 2) {
         			StringBuffer LongOp =new StringBuffer();
         			LongOp.append(arr[i]).append(arr[i+1]).append(arr[i+2]);
         			if(OperatorPrepare.isLongStringOperator(LongOp.toString())) {
         				i += 2;	
         			}
         			else
-        				throw new NumberFormatException("Illegal Expression!"); 
-        		}
-        		else if(arr.length - i > 1) {
-        			StringBuffer LongOp =new StringBuffer(arr[i] + arr[i+1] + arr[i+2]);
-        			if(OperatorPrepare.isLongStringOperator(LongOp.toString())) {
-        				i++;	
-        			}
-        			else
-        				throw new NumberFormatException("Illegal Expression!"); 
+        				throw new IllegalArgumentException("Experssion Error!"); 
         		}
         	}
-        }
+        }//长运算符i的处理
+        
+        
       	while(!opStack.isEmpty()) {  //最后运算符栈剩余的符号全部入后缀式栈
                 postfixStack.push(String.valueOf(opStack.pop()));  
             } 
