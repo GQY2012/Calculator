@@ -27,7 +27,7 @@ public class CalculatorTest {
 		assertEquals("0.08",cal.calculate("[(7.1-5.6)×0.9-1.15]÷2.5"));
 		assertEquals("9.92",cal.calculate("32.52-(6+9.728÷3.2)×2.5"));
 		assertEquals("0.08",cal.calculate("[(7.1-5.6)×0.9-1.15]÷2.5"));
-		assertEquals("16800.0",cal.calculate("(284+16)×(512-8208Mod18)"));
+		assertEquals("20.0",cal.calculate("(284+16)mod(512-8208/18)"));
 	}
 	
 	/**
@@ -79,12 +79,11 @@ public class CalculatorTest {
 	 */
 	 
 	@Test(expected = IllegalArgumentException.class)
-		public void testExperssionError(){
+		public void testparenthesesError(){
 			 cal.calculate("√64+sinπcosπ+5^(2²)×lnln(e^e)+tan0");
 			 cal.calculate("((3√8x√9)+5sin(π/2)/2.5)*(2÷2!)+2lne");
 			 cal.calculate("[(7.1-5.5.6)×0.9-1.15]÷2.5");
 			 cal.calculate("32.52-6+9.728÷3.2)×2.5");
-			 
 	}
 	
 	/**
@@ -94,11 +93,27 @@ public class CalculatorTest {
 	@Test(expected =  EmptyStackException.class)
 		public void testEmptyStack(){
 			 cal.calculate("5-+6");
+			 cal.calculate("5-");
+			 cal.calculate("Xor6");
 	}
 	 
 
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
+	
+	/**
+	 * 测试运算符错误导致的表达式异常
+	 */
+	
+	@Test
+	public void testOperatorError() {
+	    expectedEx.expect(IllegalArgumentException.class);
+	    expectedEx.expectMessage("Experssion Error!");
+	    cal.calculate("!5");
+		cal.calculate("5ln");
+		cal.calculate("sosπ+cin(π/2)+tor0");
+	}
+
 	
 	/**
 	 * 测试tan(π/2)不存在
@@ -110,7 +125,7 @@ public class CalculatorTest {
 	    expectedEx.expectMessage("Illegal Expression!");
 	    cal.calculate("tan(5π/2)");
 	    cal.calculate("tan(π/2)");
-	}
+	}	
 	
 	/**
 	 * 测试ln-1不存在
@@ -144,13 +159,22 @@ public class CalculatorTest {
 		expectedEx.expect(IllegalArgumentException.class);
 	    expectedEx.expectMessage("Illegal Expression!");
 	    cal.calculate("0^0");
+	    cal.calculate("0^0.0");
+	    cal.calculate("0.0^0");
+	    cal.calculate("tan0^sinπ");
 	}
 	
+	/**
+	 * 测试非整数及负数阶乘
+	 */
 	
-	
-	
-	
-	
-	
+	@Test
+	public void testfactorialError() {
+		expectedEx.expect(IllegalArgumentException.class);
+	    expectedEx.expectMessage("Illegal Expression!");
+	    cal.calculate("4.55!");
+	    cal.calculate("e!");
+	    cal.calculate("(-1)!");
+	}
 
 }

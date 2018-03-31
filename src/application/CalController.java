@@ -417,6 +417,9 @@ public class CalController {
 		else if(event.getCode() == KeyCode.F5) {
 			Clear();
 		}
+		else if(event.getCode() == KeyCode.F1) {
+			inputAns();
+		}
 	}
 	
 	@SuppressWarnings("unused")

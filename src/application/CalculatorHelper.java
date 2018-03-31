@@ -158,8 +158,8 @@ class CalculatorHelper {
     
     public static double factorial(String v) {  
         java.math.BigDecimal b = new java.math.BigDecimal(v); 
-        if(b.doubleValue()%1 != 0)
-        	throw new NumberFormatException("∞");
+        if(b.doubleValue()%1 != 0 || b.doubleValue() < 0)
+        	throw new IllegalArgumentException("Illegal Expression!");
         if(b.doubleValue() > 170.0)
         	throw new NumberFormatException("∞");
         java.math.BigDecimal result = new java.math.BigDecimal(1);
