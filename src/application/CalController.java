@@ -431,7 +431,7 @@ public class CalController {
 	    try {    
 	        process = runtime.exec(cmd);    
 	    } catch (final Exception e) {    
-	        System.out.println("Error exec!");    
+	        Display.setText("Help.txt not found!");    
 	    }    
 	}    
 }
